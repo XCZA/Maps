@@ -1,0 +1,282 @@
+[
+  {
+    "type": "marker",
+    "lat": 2428.5582399851974,
+    "lng": 1207.3848288760298,
+    "name": "Xinlenal — Ioulaum's Enclave",
+    "desc": "- **Founder:** Ioulaum, creator of mythallars\n- **Created:** 866 NY (−2994 DR) — the very first enclave\n- **Status:** 🔴 Crashed (3521 NY / −339 DR)\n- **Crash site:** South-eastern eaves of Neverwinter Wood, in an area called the **Forest of Hides**\n- **Notes:** The first floating city, carved from a mountain. Its mythallar allowed many later innovations. The Shades of Netheril were attempting to restore the enclave when they were recalled to Thultanthar to battle Elminster in Cormanthor, resulting in their deaths. The ruins have since been abandoned.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2349.5,
+    "lng": 1566.75,
+    "name": "Eileanar — Karsus's Enclave",
+    "desc": "- **Founder:** Karsus, innovator of heavy magic\n- **Created:** 3185 NY (−675 DR)\n- **Status:** 🔴 Ground Zero — fell in 3521 NY (−339 DR)\n- **Notes:** Reportedly atomized as a direct result of Karsus's avatar spell. Karsus's petrified corpse is said to have come crashing down in the High Forest, where the city of Karse was later founded atop the remains.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2328.856183837894,
+    "lng": 2030.1035687865779,
+    "name": "Akintaer — Quagmire",
+    "desc": "- **Founder:** Unknown\n- **Created:** 1173 NY (−2687 DR)\n- **Status:** 🔴 Crashed during the Fall (3521 NY)\n- **Crash site:** The Marsh of Simplicity on the south-western banks of the Narrow Sea; now lost beneath the High Ice of Anauroch",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2180.7173131793124,
+    "lng": 2327.795523666114,
+    "name": "Aquessir — Shadowtop Borough",
+    "desc": "- **Founder:** Trebbe\n- **Created:** 1592 NY (−2268 DR)\n- **Status:** 🔴 Mythallar warped in 3517 NY (−343 DR); Discharged catastrophically absorbing every spell, magical item, and magical effect within a 20-mile radius. Every person within range whose life had been artificially extended by magic collapsed instantly into ash.\n- **Crash site:** The Jannick River — a dried-up tributary of the modern River of Gems in Anauroch, near the Shattered Tower",
+    "color": "#212121"
+  },
+  {
+    "type": "marker",
+    "lat": 2443.761035780708,
+    "lng": 5300.47243177436,
+    "name": "Arongahurr",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🔴 Crashed during the Fall\n- **Crash site:** The north-eastern-most peaks of the Shadowmount Mountains, south-east of Yal Tengri (the Great Ice Sea), north of the Horse Plains, north-east of Taan and west of Ama Basin in northern Kara-Tur\n- **Notes:** Location is far outside the borders of Anauroch; not depicted on most Faerûn maps.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2051.316772222174,
+    "lng": 2240.821389580169,
+    "name": "Delia",
+    "desc": "- **Founder:** Lady Polaris\n- **Created:** 2458 NY (−1402 DR)\n- **Status:** 🔴 Destroyed during the Fall (3521 NY)\n- **Crash site:** North of the Azirrhat Mountains, south of the River of Gems where it terminates at the Throat, in Anauroch",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2250.013777735594,
+    "lng": 1977.0705601975867,
+    "name": "Doubloon — The Pirate Enclave",
+    "desc": "- **Founder:** Tempera\n- **Created:** 2214 NY (−1646 DR)\n- **Status:** 🔴 Vanished 3417 NY (−443 DR) — roughly a century before the Fall\n- **Last known location:** Just north-west of the peak known as the Pillar of Tauros, on the Plain of Standing Stones in Anauroch\n- **Notes:** The enclave vanished without a trace and has not been seen since. Its fate remains one of Netheril's enduring mysteries.",
+    "color": "#f5f5f5"
+  },
+  {
+    "type": "marker",
+    "lat": 2845.397687494667,
+    "lng": 152.73506473629425,
+    "name": "Farenwey",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** ❓ Fate unknown\n- **Notes:** Possibly a ground-based city rather than a flying enclave; details are extremely scant.",
+    "color": "#F9A825"
+  },
+  {
+    "type": "marker",
+    "lat": 2558.312334332929,
+    "lng": 1853.326873489941,
+    "name": "Hlaungadath",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🔴 Crashed during the Fall\n- **Crash site:** Far north-west of Anauroch, north-east of the ruined dwarven port of Ascore, west of Maedrin's Rift",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2074.5,
+    "lng": 2353,
+    "name": "Hlondath",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🟢 Saved by Mystra; soft-landed\n- **Crash site:** East of Anauroch, just west of the Border Forest and north of the Desertsmouth Mountains\n- **Notes:** One of three enclaves saved by divine intervention. Its survivors founded the realm of **Hlondath** (339 BDR – 329 DR).",
+    "color": "#00796B"
+  },
+  {
+    "type": "marker",
+    "lat": 2846,
+    "lng": 226,
+    "name": "Jethaere",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** ❓ Fate unknown\n- **Notes:** Crash site unknown.",
+    "color": "#F9A825"
+  },
+  {
+    "type": "marker",
+    "lat": 2058.5,
+    "lng": 3371.5,
+    "name": "Jiksidur",
+    "desc": "- **Founder:** Larloch (archwizard-lich)\n- **Created:** Unknown\n- **Status:** 🔴 Crashed in 3521 NY\n- **Crash site:** Crashed from a low altitude onto the south-eastern part of the Great Glacier. The glacier later retreated; the modern crash site, now called **Hark's Finger**, lies on the plains of Narfell, just east of Icelace Lake and north of the town of Peltarch\n- **Notes:** One of the few enclaves to survive semi-intact — though everyone aboard was still killed in the crash. Larloch had fled on dragonback just before impact. He and Szass Tam later recovered numerous Netherese artefacts from the ruins.",
+    "color": "#F57C00"
+  },
+  {
+    "type": "marker",
+    "lat": 2348.3016203205243,
+    "lng": 2363.8579695066283,
+    "name": "Jockteleg",
+    "desc": "- **Founder:** Quantoul\n- **Created:** 1840 NY (−2020 DR)\n- **Status:** 🔴 Crashed during the Fall\n- **Crash site:** Western foothills of the northern Abbey Mountains, south-west of the Frozen Forest",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 1295.419623133755,
+    "lng": 4276.581812616239,
+    "name": "Kolthunral — The Fortress Enclave",
+    "desc": "- **Founder:** Unknown\n- **Created:** Post-Fall; built by the returned Shades of Netheril using a recovered mythallar\n- **Status:** ❓ Location and fate unknown\n- **Notes:** A new enclave constructed after Thultanthar's return to Toril in 1372 DR.",
+    "color": "#F9A825"
+  },
+  {
+    "type": "marker",
+    "lat": 2382.2427458174784,
+    "lng": 2052.023879003361,
+    "name": "Lachery — Lathery",
+    "desc": "- **Founder:** Veridon\n- **Created:** 3357 NY (−503 DR) — the last new enclave built\n- **Status:** 🔴 Fell in 3521 NY\n- **Crash site:** Crashed into the Narrow Sea near the Channel Mountains (the Targorlar) and sank, taking the entire population with it. Later buried under the High Ice.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2827.012911183817,
+    "lng": 2057.6807332528533,
+    "name": "Lhaoda",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🔴 Destroyed c. 3420 NY (−440 DR) — roughly a century before the Fall\n- **Notes:** Phaerimm spells disabled its mythallar and brought it crashing to the ground. Exact crash site unknown.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2138.998013089306,
+    "lng": 1948.0791821689384,
+    "name": "Maunator — Sunrest",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🔴 Vaporized in 2202 NY (−1658 DR)\n- **Crash site:** West of the modern Snout Mountains in central-western Anauroch, near Oreme — reputedly one of the oldest cities on Toril\n- **Notes:** A spell experiment destroyed its mythallar. Left absolutely no trace. The disaster encouraged later Netherese high-energy magical research to relocate to fortified laboratories beneath the Nether Mountains.",
+    "color": "#212121"
+  },
+  {
+    "type": "marker",
+    "lat": 2822,
+    "lng": 2156,
+    "name": "Negarath",
+    "desc": "- **Founder:** Probably Barze (ruler)\n- **Created:** Unknown\n- **Status:** ❓ Fate unclear\n- **Notes:** The enclave's ruler, **Barze**, was driven out for criminal acts and fled toward present-day Vaasa — then covered by the ice of the Great Glacier — where he founded a kingdom bearing his name. What became of the enclave itself is unknown.",
+    "color": "#F9A825"
+  },
+  {
+    "type": "marker",
+    "lat": 1392,
+    "lng": 2980,
+    "name": "Nhalloth",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown (nearly nine centuries old at the Fall)\n- **Status:** 🔴 Destroyed in 3521 NY\n- **Crash site:** The Inner Sea; ruins lie just south-west of the Altumbel Peninsula, west of Aglarond, amidst the islands known as the **Thousand Swords** (the Altumbel Archipelago)\n- **Notes:** Was engaged in long-range exploration of the Sea of Fallen Stars when the Fall struck. One of the **best-preserved enclaves**; during the Spellplague it was briefly accessible due to reduced sea levels.",
+    "color": "#F57C00"
+  },
+  {
+    "type": "marker",
+    "lat": 1866.0547955512989,
+    "lng": 1347.7455249415596,
+    "name": "Orbedal — Sanctuary",
+    "desc": "- **Founder:** Unknown\n- **Created:** 1247 NY (−2613 DR)\n- **Status:** 🔴 Fell during the Fall; crash-landed near Trollbark Forest\n- **Crash site:** Originally assumed to have crashed into the Bay of Ascore or onto the shoreline near the Sanguine Mountain. In reality, the enclave shifted in space at the last second — likely via emergency teleportation magic. The attempt failed and it materialized over the southern Trollbark Forest near the mouth of the Winding Water on the Sword Coast, crashing into the north-western foothills of the Troll Hills.\n- **Notes:** Later claimed by Larloch and became known as **Warlock's Crypt**.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2208,
+    "lng": 2203.5,
+    "name": "Palter",
+    "desc": "- **Founder:** Halavar\n- **Created:** 1217 NY (−2643 DR)\n- **Status:** 🔴 Crashed in 3521 NY\n- **Crash site:** Banks of the Netheril River (the River of Gems), on the Plain of Standing Stones in Anauroch\n- **Notes:** The city appears to have been floating unusually low at the time of the Fall — some people actually survived the crash. The ruins became a still-extant hill known as **Heroes' Helm**.",
+    "color": "#F57C00"
+  },
+  {
+    "type": "marker",
+    "lat": 2343,
+    "lng": 2273,
+    "name": "Phylornel — Buoyance",
+    "desc": "- **Founder:** Buoyance\n- **Created:** 2212 NY (−1648 DR)\n- **Status:** 🔴 Destroyed during the Fall\n- **Crash site:** Fell into the Netheril River (River of Gems) from a very low height, north-east of the mountain known as **Aerithae's Rest** in the north-eastern Plain of Standing Stones, not far south of the Ice Wall\n- **Notes:** More than **a hundred people survived** due to the enclave's unusually low altitude at the time.",
+    "color": "#F57C00"
+  },
+  {
+    "type": "marker",
+    "lat": 1453,
+    "lng": 2451,
+    "name": "Sakkors — The Sentient Enclave",
+    "desc": "- **Founder:** Xolund the Maker\n- **Created:** Unknown\n- **Status:** 🔴 Fell in 3521 NY → 🟢 Refloated 1372 DR → 🔴 Destroyed 1484 DR\n- **Crash site:** Fell into the Sea of Fallen Stars, just north-east of what is now Starmantle, west of the Isle of Prespur and south-west of Saerloon in Sembia\n- **Notes:** Unique in that Xolund gave its mythallar a **rudimentary sentience**. Rediscovered by **Erevis Cale**, Chosen of Mask, just before the Spellplague. The Shades of Netheril subsequently re-floated it as their second flying city, but its mythallar suffered a terminal failure just before the Second Sundering. The city was deliberately flown into the **Ordulin Void** in 1484 DR, destroying both the enclave and sealing the void.",
+    "color": "#212121"
+  },
+  {
+    "type": "marker",
+    "lat": 1897.5,
+    "lng": 2245,
+    "name": "Selûnarra — Opus",
+    "desc": "- **Founder:** Chever\n- **Created:** 1933 NY (−1927 DR)\n- **Status:** ❓ Fate uncertain — possibly saved; possibly destroyed\n- **Last known location:** South-eastern shores of Basin Lake (now the Bowl of Loneliness in south-eastern Anauroch), near the Lost Vale\n- **Notes:** The center of Selûne-worship in Netheril and the bitter rival of Thultanthar. Evidence suggests Selûne intervened during the Fall and shifted the entire city into her divine realm. According to myth, Selûnarra was to return to Toril to battle the Shades of Thultanthar, but this never came to pass during the Spellplague or the Second Sundering. Whether the enclave truly survived, still exists in Ysgard, or was destroyed as it appears, remains unknown.",
+    "color": "#F9A825"
+  },
+  {
+    "type": "marker",
+    "lat": 1951.5,
+    "lng": 2223.5,
+    "name": "Spiel",
+    "desc": "- **Founder:** Unknown\n- **Created:** 1349 NY (−2511 DR)\n- **Status:** 🔴 Crashed in 3521 NY — ruins survive semi-intact\n- **Crash site:** North-western shores of Basin Lake (now the Bowl of Loneliness near the Lost Vale and the Desertsmouth Mountains); ruins still visible just west of **El Rahalat Oasis**\n- **Notes:** The enclave survived semi-intact structurally, but the entire population appears to have been wiped out in the Fall.",
+    "color": "#F57C00"
+  },
+  {
+    "type": "marker",
+    "lat": 1732.5400235471127,
+    "lng": 2208.2080929786307,
+    "name": "Synod",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🔴 Destroyed in 3521 NY — ruins partially survive\n- **Crash site:** The Stonelands; became a tall, craggy hill\n- **Notes:** Precise location within the Stonelands remains unknown.",
+    "color": "#F57C00"
+  },
+  {
+    "type": "marker",
+    "lat": 2023.5907993272642,
+    "lng": 2231.9389168162043,
+    "name": "Tanathras",
+    "desc": "- **Founder:** Falious\n- **Created:** Unknown\n- **Status:** 🔴 Destroyed 3212 NY (−648 DR) — 300 years before the Fall\n- **Crash site:** Southern face of the Azirrhat, a mountainous peak in eastern Anauroch, north-east of At'ar's Looking Glass\n- **Notes:** Destroyed during an internal power struggle when students accidentally disintegrated its mythallar.",
+    "color": "#212121"
+  },
+  {
+    "type": "marker",
+    "lat": 1957.2715703243634,
+    "lng": 5294.815577524868,
+    "name": "Telarrazhard — Telarrzhard",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🔴 Destroyed in 3521 NY\n- **Crash site:** High in the Wu Pi Te Shao Mountains (part of the Yehimal range), north-east of the goblin kingdom of Nix, in far south-western Kara-Tur, south-west of Tabot\n- **Notes:** Location is far outside Anauroch; not depicted on most Faerûn maps.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 1877,
+    "lng": 2528,
+    "name": "Thultanthar — The City of Shade",
+    "desc": "- **Founder:** Unknown; built using a recovered mythallar\n- **Created:** c. −1471 DR\n- **Status:** 🔴 Ultimately destroyed 1487 DR\n- **Apparent crash site:** Just north of Heip Lake (now the Dark Bones Rift in the western Plain of Standing Stones)\n- **Notes:** The center of Shar-worship in Netheril. Its Shar-worshipping inhabitants shifted the entire city into the **Shadowfell** seconds before impact. After enduring the Shadowfell for 1,700 years, it was returned to Toril by the elves of Evereska, who desperately sought allies against the resurgent phaerimm. The returned **Shades of Netheril** sought to restore Anauroch and refound the empire, making enemies of most factions of Faerûn in the process. During the Second Sundering in 1487 DR, Elminster brought the city crashing down on top of the restored elven city of Myth Drannor, destroying both. Also called the **City of Shade**.",
+    "color": "#212121"
+  },
+  {
+    "type": "marker",
+    "lat": 2826,
+    "lng": 1988,
+    "name": "Tith Tilendrothael",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🔴 Destroyed c. −439 DR — roughly a century before the Fall\n- **Notes:** Phaerimm spells severed its mythallar. Exact crash site unknown.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 1974.9492398540272,
+    "lng": 2295.9757185127196,
+    "name": "Undrentide",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🔴 Fell in 3521 NY; mythallar briefly reactivated c. 1370 DR → 🔴 Destroyed again\n- **Notes:** Located near Netheril's eastern border with Cormanthyr. Precise location unknown. Adventurers briefly restored its mythallar in the early 1370s DR, nearly allowing the city to take to the skies again, but the mythallar was subsequently destroyed to prevent it.",
+    "color": "#F57C00"
+  },
+  {
+    "type": "marker",
+    "lat": 1956,
+    "lng": 5444,
+    "name": "Urvraunt",
+    "desc": "- **Founder:** Unknown\n- **Created:** Unknown\n- **Status:** 🔴 Destroyed in 3521 NY\n- **Crash site:** The north-eastern-most peaks of the Mountains of Amara, a subrange of the Koryaz Mountains on the far northern border of Shou Lung in Kara-Tur, due north of the Talmaruk Islands and south of the Wu-Haltai tribelands\n- **Notes:** Location is far outside Anauroch; not depicted on most Faerûn maps.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2737.917456754312,
+    "lng": 1135.6134905855952,
+    "name": "Ythryn — The Necropolis",
+    "desc": "- **Founder:** Often attributed to **Iyraclea** (frost archwizard)\n- **Created:** Unknown\n- **Status:** 🔴 Fell 3517 NY (−343 DR) — four years before the main Fall\n- **Crash site:** The Reghed Glacier, north-west of Icewind Dale, whilst the enclave was engaged in magical research\n- **Notes:** Its mythallar failed independently of the main Fall. The ruins were frozen and preserved by the goddess Auril's magic, leaving the city in remarkable condition — later known as **the Necropolis**. Rediscovered by adventurers in **1489 DR**.",
+    "color": "#212121"
+  },
+  {
+    "type": "marker",
+    "lat": 1877,
+    "lng": 2235,
+    "name": "Anauria",
+    "desc": "Three Netherese city-states — **Anauria**, **Asram**, and **Hlondath** — were flying cities that did not possess mythallars. Mystra intervened during the Fall to slow their descent. They survived and founded successor kingdoms:\n\n- **Anauria** — soft-landed in south-east Anauroch near the Lost Vale and Desertsmouth Mountains; kingdom lasted 339 BDR – 111 DR\n- **Asram** — soft-landed in south-west Anauroch, south of the Wall of Fallen Djinn and Shoal of Thirst; kingdom lasted 339 – 33 BDR\n- **Hlondath** — soft-landed in east Anauroch just west of the Border Forest; kingdom lasted 339 BDR – 329 DR",
+    "color": "#00796B"
+  },
+  {
+    "type": "marker",
+    "lat": 1842,
+    "lng": 2088.5,
+    "name": "Asram",
+    "desc": "Three Netherese city-states — **Anauria**, **Asram**, and **Hlondath** — were flying cities that did not possess mythallars. Mystra intervened during the Fall to slow their descent. They survived and founded successor kingdoms:\n\n- **Anauria** — soft-landed in south-east Anauroch near the Lost Vale and Desertsmouth Mountains; kingdom lasted 339 BDR – 111 DR\n- **Asram** — soft-landed in south-west Anauroch, south of the Wall of Fallen Djinn and Shoal of Thirst; kingdom lasted 339 – 33 BDR\n- **Hlondath** — soft-landed in east Anauroch just west of the Border Forest; kingdom lasted 339 BDR – 329 DR",
+    "color": "#00796B"
+  }
+]
