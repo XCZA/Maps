@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>My Custom Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+    <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        #map { height: 100vh; width: 100vw; }
+
+        /* Save/Load toolbar */
+        #saveBar {
+            position: absolute;
+            bottom: 20px; left: 50%; transform: translateX(-50%);
+            z-index: 1000;
+            display: flex; gap: 8px;
+        }
+        .bar-btn {
+            padding: 8px 18px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+        .bar-btn.save { background: #2E7D32; color: white; }
+        .bar-btn.load { background: #1565C0; color: white; }
+        .bar-btn.save:hover { background: #1B5E20; }
+        .bar-btn.load:hover { background: #0D47A1; }
+        #fileInput { display: none; }
+
+        /* Toast notification */
+        #toast {
+            position: absolute;
+            bottom: 70px; left: 50%; transform: translateX(-50%);
+            background: #333; color: white;
+            padding: 8px 18px; border-radius: 20px;
+            font-size: 13px; z-index: 1001;
+            opacity: 0; transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        #toast.show { opacity: 1; }
+
+        /* Modal */
+        #modalOverlay {
+            display: none;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        #modalOverlay.active { display: flex; }
+
+        #editBox {
+            background: white;
+            border-radius: 10px;
+            padding: 24px;
+            width: 340px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        #editBox h3 { margin: 0 0 16px; font-size: 16px; color: #333; }
+        #editBox label { display: block; font-size: 12px; color: #666; margin-bottom: 4px; }
+        #editBox input[type="text"], #editBox textarea {
+            width: 100%; box-sizing: border-box;
+            border: 1px solid #ccc; border-radius: 6px;
+            padding: 8px; font-size: 14px; margin-bottom: 14px;
+            font-family: Arial, sans-serif;
+        }
+        #editBox textarea { resize: vertical; font-family: monospace; font-size: 13px; }
+
+        .color-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .color-swatch {
+            width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
+            border: 3px solid transparent; box-sizing: border-box; transition: transform 0.1s;
+        }
+        .color-swatch:hover { transform: scale(1.15); }
+        .color-swatch.selected { border-color: #333 !important; transform: scale(1.15); }
+
+        .tab-row { display: flex; margin-bottom: 6px; border-bottom: 1px solid #ddd; }
+        .tab-btn {
+            font-size: 12px; padding: 4px 12px; border: none; background: none;
+            cursor: pointer; color: #999; border-bottom: 2px solid transparent; margin-bottom: -1px;
+        }
+        .tab-btn.active { color: #4285F4; border-bottom-color: #4285F4; font-weight: bold; }
+
+        #descPreview {
+            display: none; min-height: 96px; max-height: 200px; overflow-y: auto;
+            border: 1px solid #ccc; border-radius: 6px; padding: 8px 10px;
+            font-size: 13px; line-height: 1.5; color: #333; margin-bottom: 14px;
+        }
+        #descPreview p { margin: 0 0 6px; }
+        #descPreview ul, #descPreview ol { margin: 4px 0; padding-left: 18px; }
+        #descPreview code { background: #f0f0f0; border-radius: 3px; padding: 1px 4px; font-size: 12px; }
+
+        .btn-row { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+        .btn-cancel {
+            padding: 8px 16px; border: 1px solid #ccc;
+            background: white; border-radius: 6px; cursor: pointer; font-size: 13px;
+        }
+        .btn-save {
+            padding: 8px 16px; border: none;
+            background: #4285F4; color: white; border-radius: 6px; cursor: pointer; font-size: 13px;
+        }
+        .btn-save:hover { background: #3367d6; }
+
+        /* Popup styles */
+        .leaflet-popup-content ul { margin: 4px 0; padding-left: 16px; }
+        .leaflet-popup-content code { background: #f0f0f0; border-radius: 3px; padding: 1px 3px; font-size: 12px; }
+        .popup-edit-hint {
+            font-size: 11px; color: #aaa; margin-top: 6px; border-top: 1px solid #eee;
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div style="position: relative; height: 100vh; width: 100vw;">
+    <div id="map"></div>
+
+    <!-- Save / Load bar -->
+    <div id="saveBar">
+        <button class="bar-btn save" onclick="saveMap()">💾 Save Map</button>
+        <button class="bar-btn load" onclick="document.getElementById('fileInput').click()">📂 Load Map</button>
+        <input type="file" id="fileInput" accept=".json" onchange="loadMap(event)">
+    </div>
+
+    <div id="toast"></div>
+
+    <!-- Edit modal -->
+    <div id="modalOverlay">
+        <div id="editBox">
+            <h3>Edit Pin</h3>
+
+            <label>Name</label>
+            <input type="text" id="pinName" placeholder="Enter a name...">
+
+            <label>Pin color</label>
+            <div class="color-row" id="colorSwatches"></div>
+
+            <label>Description
+                <span style="font-size:11px; color:#bbb; margin-left:6px;">supports **markdown**</span>
+            </label>
+            <div class="tab-row">
+                <button class="tab-btn active" id="tabWrite" onclick="switchTab('write')">Write</button>
+                <button class="tab-btn" id="tabPreview" onclick="switchTab('preview')">Preview</button>
+            </div>
+            <textarea id="pinDesc" rows="5" placeholder="**bold**, *italic*, - lists, [links](url)..."></textarea>
+            <div id="descPreview"></div>
+
+            <div class="btn-row">
+                <button class="btn-cancel" onclick="cancelEdit()">Cancel</button>
+                <button class="btn-save" onclick="saveEdit()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // === CHANGE THESE TWO LINES ONLY ===
+    var imageUrl = "forgotten-realms-lighter.png";   // ← put your image link here
+    var imageBounds = [[0, 0], [2797, 4063]];         // ← [height, width] of your image in pixels
+
+    var map = L.map('map', { crs: L.CRS.Simple, minZoom: -5, maxZoom: 5, zoomSnap: 0.5 });
+    L.imageOverlay(imageUrl, imageBounds).addTo(map);
+    map.fitBounds(imageBounds);
+
+    var drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+
+    var drawControl = new L.Control.Draw({
+        draw: {
+            marker: true, polyline: true, polygon: true,
+            rectangle: true, circle: false, circlemarker: false
+        },
+        edit: { featureGroup: drawnItems, remove: true }
+    });
+    map.addControl(drawControl);
+
+    // --- Colors ---
+    var PIN_COLORS = [
+        { name: 'Red',    hex: '#e53935' },
+        { name: 'Orange', hex: '#F57C00' },
+        { name: 'Yellow', hex: '#F9A825' },
+        { name: 'Green',  hex: '#2E7D32' },
+        { name: 'Teal',   hex: '#00796B' },
+        { name: 'Blue',   hex: '#1565C0' },
+        { name: 'Purple', hex: '#6A1B9A' },
+        { name: 'Pink',   hex: '#AD1457' },
+        { name: 'White',  hex: '#f5f5f5' },
+        { name: 'Black',  hex: '#212121' },
+    ];
+    var selectedColor = PIN_COLORS[0].hex;
+
+    function makePinSVG(color) {
+        var stroke = (color === '#f5f5f5') ? '#aaa' : 'rgba(0,0,0,0.3)';
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="36" viewBox="0 0 24 36">'
+            + '<path d="M12 0C5.373 0 0 5.373 0 12c0 9 12 24 12 24S24 21 24 12C24 5.373 18.627 0 12 0z" '
+            + 'fill="' + color + '" stroke="' + stroke + '" stroke-width="1.5"/>'
+            + '<circle cx="12" cy="12" r="4.5" fill="rgba(255,255,255,0.35)"/>'
+            + '</svg>';
+        return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+
+    function makeIcon(color) {
+        return L.icon({
+            iconUrl: makePinSVG(color),
+            iconSize: [24, 36],
+            iconAnchor: [12, 36],
+            popupAnchor: [0, -38]
+        });
+    }
+
+    // Build swatches
+    var swatchContainer = document.getElementById('colorSwatches');
+    PIN_COLORS.forEach(function(c) {
+        var sw = document.createElement('div');
+        sw.className = 'color-swatch' + (c.hex === selectedColor ? ' selected' : '');
+        sw.style.background = c.hex;
+        if (c.hex === '#f5f5f5') sw.style.border = '3px solid #ccc';
+        sw.title = c.name;
+        sw.dataset.hex = c.hex;
+        sw.onclick = function() { setSwatchSelection(c.hex); };
+        swatchContainer.appendChild(sw);
+    });
+
+    function setSwatchSelection(hex) {
+        selectedColor = hex;
+        document.querySelectorAll('.color-swatch').forEach(function(s) {
+            s.classList.remove('selected');
+            s.style.border = (s.dataset.hex === '#f5f5f5') ? '3px solid #ccc' : '3px solid transparent';
+        });
+        var target = swatchContainer.querySelector('[data-hex="' + hex + '"]');
+        if (target) { target.classList.add('selected'); target.style.border = '3px solid #333'; }
+    }
+
+    // --- Popup content builder ---
+    function buildPopupHtml(name, desc) {
+        var html = '<div style="max-width:230px;">'
+            + '<b style="font-size:14px;">' + (name || 'Pin') + '</b>';
+        if (desc) {
+            html += '<hr style="margin:6px 0;border:none;border-top:1px solid #ddd;">'
+                + '<div style="font-size:13px;line-height:1.5;">' + marked.parse(desc) + '</div>';
+        }
+        html += '<div class="popup-edit-hint">Click pin to edit</div></div>';
+        return html;
+    }
+
+    // --- Tabs ---
+    function switchTab(tab) {
+        if (tab === 'preview') {
+            document.getElementById('descPreview').innerHTML = marked.parse(document.getElementById('pinDesc').value || '*Nothing written yet.*');
+            document.getElementById('descPreview').style.display = 'block';
+            document.getElementById('pinDesc').style.display = 'none';
+            document.getElementById('tabWrite').classList.remove('active');
+            document.getElementById('tabPreview').classList.add('active');
+        } else {
+            document.getElementById('descPreview').style.display = 'none';
+            document.getElementById('pinDesc').style.display = 'block';
+            document.getElementById('tabWrite').classList.add('active');
+            document.getElementById('tabPreview').classList.remove('active');
+        }
+    }
+
+    // --- Modal ---
+    var currentLayer = null;
+
+    function showModal(layer) {
+        // Close any open hover popup first
+        layer.closePopup();
+        currentLayer = layer;
+        document.getElementById('pinName').value = layer._customName || '';
+        document.getElementById('pinDesc').value = layer._customDesc || '';
+        setSwatchSelection(layer._customColor || PIN_COLORS[0].hex);
+        switchTab('write');
+        document.getElementById('modalOverlay').classList.add('active');
+        setTimeout(function() { document.getElementById('pinName').focus(); }, 50);
+    }
+
+    function saveEdit() {
+        if (!currentLayer) return;
+        var name  = document.getElementById('pinName').value.trim();
+        var desc  = document.getElementById('pinDesc').value.trim();
+        var color = selectedColor;
+
+        currentLayer._customName  = name;
+        currentLayer._customDesc  = desc;
+        currentLayer._customColor = color;
+
+        if (currentLayer.setIcon) currentLayer.setIcon(makeIcon(color));
+
+        var popupHtml = buildPopupHtml(name, desc);
+        if (!currentLayer.getPopup()) {
+            currentLayer.bindPopup(popupHtml, { autoPan: false });
+        } else {
+            currentLayer.setPopupContent(popupHtml);
+        }
+
+        cancelEdit();
+        showToast('Pin saved!');
+    }
+
+    function cancelEdit() {
+        currentLayer = null;
+        document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+        if (e.target === this) cancelEdit();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') cancelEdit();
+    });
+
+    // --- Attach events to a layer ---
+    function attachEvents(layer) {
+        if (layer instanceof L.Marker) {
+            // Hover: show popup
+            layer.on('mouseover', function() {
+                if (document.getElementById('modalOverlay').classList.contains('active')) return;
+                layer.openPopup();
+            });
+            layer.on('mouseout', function() {
+                layer.closePopup();
+            });
+            // Click: open editor (not the popup)
+            layer.on('click', function(e) {
+                L.DomEvent.stopPropagation(e);
+                showModal(layer);
+            });
+        }
+    }
+
+    // --- Drawing ---
+    map.on(L.Draw.Event.CREATED, function(e) {
+        var layer = e.layer;
+        if (e.layerType === 'marker') {
+            layer.setIcon(makeIcon(selectedColor));
+            layer._customColor = selectedColor;
+            // Bind an empty popup so hover works even before naming
+            layer.bindPopup(buildPopupHtml('', ''), { autoPan: false });
+        }
+        drawnItems.addLayer(layer);
+        attachEvents(layer);
+        if (e.layerType === 'marker') showModal(layer);
+    });
+
+    // --- Toast ---
+    var toastTimer;
+    function showToast(msg) {
+        var t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2500);
+    }
+
+    // --- Save map to JSON ---
+    function saveMap() {
+        var data = [];
+        drawnItems.eachLayer(function(layer) {
+            if (layer instanceof L.Marker) {
+                var ll = layer.getLatLng();
+                data.push({
+                    type: 'marker',
+                    lat: ll.lat,
+                    lng: ll.lng,
+                    name:  layer._customName  || '',
+                    desc:  layer._customDesc  || '',
+                    color: layer._customColor || PIN_COLORS[0].hex
+                });
+            } else if (layer instanceof L.Polyline || layer instanceof L.Polygon || layer instanceof L.Rectangle) {
+                data.push({
+                    type: 'shape',
+                    geojson: layer.toGeoJSON()
+                });
+            }
+        });
+
+        var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'my-map-pins.json';
+        a.click();
+        showToast('Map saved as my-map-pins.json!');
+    }
+
+    // --- Load map from JSON ---
+    function loadMap(event) {
+        var file = event.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                var data = JSON.parse(e.target.result);
+                // Clear existing
+                drawnItems.clearLayers();
+
+                data.forEach(function(item) {
+                    var layer;
+                    if (item.type === 'marker') {
+                        var color = item.color || PIN_COLORS[0].hex;
+                        layer = L.marker([item.lat, item.lng], { icon: makeIcon(color) });
+                        layer._customName  = item.name  || '';
+                        layer._customDesc  = item.desc  || '';
+                        layer._customColor = color;
+                        layer.bindPopup(buildPopupHtml(item.name, item.desc), { autoPan: false });
+                        drawnItems.addLayer(layer);
+                        attachEvents(layer);
+                    } else if (item.type === 'shape' && item.geojson) {
+                        layer = L.geoJSON(item.geojson).getLayers()[0];
+                        if (layer) drawnItems.addLayer(layer);
+                    }
+                });
+                showToast('Map loaded — ' + data.length + ' items restored.');
+            } catch(err) {
+                showToast('Error loading file.');
+                console.error(err);
+            }
+        };
+        reader.readAsText(file);
+        // Reset so the same file can be re-loaded if needed
+        event.target.value = '';
+    }
+</script>
+</body>
+</html>
