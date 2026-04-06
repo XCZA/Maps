@@ -428,6 +428,31 @@
         // Reset so the same file can be re-loaded if needed
         event.target.value = '';
     }
+
+    fetch('my-map-pins.json')
+  .then(response => response.json())
+  .then(data => {
+    drawnItems.clearLayers();
+
+    data.forEach(function(item) {
+      var layer;
+      if (item.type === 'marker') {
+        var color = item.color || PIN_COLORS[0].hex;
+        layer = L.marker([item.lat, item.lng], { icon: makeIcon(color) });
+        layer._customName  = item.name  || '';
+        layer._customDesc  = item.desc  || '';
+        layer._customColor = color;
+        layer.bindPopup(buildPopupHtml(item.name, item.desc), { autoPan: false });
+        drawnItems.addLayer(layer);
+        attachEvents(layer);
+      } else if (item.type === 'shape' && item.geojson) {
+        layer = L.geoJSON(item.geojson).getLayers()[0];
+        if (layer) drawnItems.addLayer(layer);
+      }
+    });
+  })
+  .catch(err => console.error('Could not load JSON:', err));
+  
 </script>
 </body>
 </html>
