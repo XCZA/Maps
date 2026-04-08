@@ -228,7 +228,8 @@ var map = L.map('map', {
     crs:      L.CRS.Simple,
     minZoom:  -5,
     maxZoom:   5,
-    zoomSnap:  0.5
+    zoomSnap:  0.5,
+    tap: false
 });
 
 var imageOverlay = L.imageOverlay(LAYER_URLS.regional, imageBounds).addTo(map);
