@@ -40,18 +40,11 @@
             overflow: hidden;
         }
         #layerActionsPanel.open { display: flex; }
-
         .layer-action-btn {
-            display: block;
-            padding: 0 16px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #555;
-            cursor: pointer;
-            text-decoration: none;
-            white-space: nowrap;
-            border-right: 1px solid #ddd;
-            transition: background 0.1s;
+            display: block; padding: 0 16px;
+            font-size: 12px; font-weight: 600; color: #555;
+            cursor: pointer; text-decoration: none; white-space: nowrap;
+            border-right: 1px solid #ddd; transition: background 0.1s;
         }
         .layer-action-btn:last-child { border-right: none; }
         .layer-action-btn:hover { background: #f4f4f4; color: #222; }
@@ -59,51 +52,33 @@
 
         /* ── Toast ── */
         #toast {
-            position: fixed;
-            bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: #333; color: white;
-            padding: 8px 18px; border-radius: 20px;
-            font-size: 13px; z-index: 3000;
-            opacity: 0; transition: opacity 0.3s;
-            pointer-events: none;
-            white-space: nowrap;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: #333; color: white; padding: 8px 18px; border-radius: 20px;
+            font-size: 13px; z-index: 3000; opacity: 0; transition: opacity 0.3s;
+            pointer-events: none; white-space: nowrap;
         }
         #toast.show { opacity: 1; }
 
         /* ── Edit modal ── */
         #modalOverlay {
-            display: none;
-            position: fixed;
+            display: none; position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
+            background: rgba(0,0,0,0.5); z-index: 2000;
+            align-items: center; justify-content: center; padding: 16px;
         }
         #modalOverlay.active { display: flex; }
-
         #editBox {
-            background: white;
-            border-radius: 10px;
-            padding: 24px;
-            width: 100%;
-            max-width: 360px;
-            max-height: 90vh;
-            overflow-y: auto;
+            background: white; border-radius: 10px; padding: 24px;
+            width: 100%; max-width: 360px; max-height: 90vh; overflow-y: auto;
             box-shadow: 0 8px 30px rgba(0,0,0,0.3);
         }
         #editBox h3 { margin: 0 0 16px; font-size: 16px; color: #333; }
         #editBox label { display: block; font-size: 12px; color: #666; margin-bottom: 4px; }
-        #editBox input[type="text"],
-        #editBox textarea {
-            width: 100%;
-            border: 1px solid #ccc; border-radius: 6px;
-            padding: 8px; font-size: 14px; margin-bottom: 14px;
-            font-family: Arial, sans-serif;
+        #editBox input[type="text"], #editBox textarea {
+            width: 100%; border: 1px solid #ccc; border-radius: 6px;
+            padding: 8px; font-size: 14px; margin-bottom: 14px; font-family: Arial, sans-serif;
         }
         #editBox textarea { resize: vertical; font-family: monospace; font-size: 13px; }
-
         .color-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
         .color-swatch {
             width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
@@ -111,14 +86,12 @@
         }
         .color-swatch:hover { transform: scale(1.15); }
         .color-swatch.selected { border-color: #333 !important; transform: scale(1.15); }
-
         .tab-row { display: flex; margin-bottom: 6px; border-bottom: 1px solid #ddd; }
         .tab-btn {
             font-size: 12px; padding: 4px 12px; border: none; background: none;
             cursor: pointer; color: #999; border-bottom: 2px solid transparent; margin-bottom: -1px;
         }
         .tab-btn.active { color: #4285F4; border-bottom-color: #4285F4; font-weight: bold; }
-
         #descPreview {
             display: none; min-height: 80px; max-height: 200px; overflow-y: auto;
             border: 1px solid #ccc; border-radius: 6px; padding: 8px 10px;
@@ -127,7 +100,6 @@
         #descPreview p { margin: 0 0 6px; }
         #descPreview ul, #descPreview ol { margin: 4px 0; padding-left: 18px; }
         #descPreview code { background: #f0f0f0; border-radius: 3px; padding: 1px 4px; font-size: 12px; }
-
         .btn-row { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
         .btn-cancel {
             padding: 8px 16px; border: 1px solid #ccc;
@@ -139,25 +111,14 @@
         }
         .btn-save:hover { background: #3367d6; }
 
-        /* ── Popup styles ── */
+        /* ── Popup ── */
         .leaflet-popup-content ul  { margin: 4px 0; padding-left: 16px; }
         .leaflet-popup-content code { background: #f0f0f0; border-radius: 3px; padding: 1px 3px; font-size: 12px; }
-        .popup-edit-hint {
-            font-size: 11px; color: #aaa; margin-top: 6px;
-            border-top: 1px solid #eee; padding-top: 5px;
-        }
+        .popup-edit-hint { font-size: 11px; color: #aaa; margin-top: 6px; border-top: 1px solid #eee; padding-top: 5px; }
         .popup-edit-btn {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 5px 14px;
-            background: #4285F4;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            font-family: Arial, sans-serif;
-            -webkit-appearance: none;
+            display: inline-block; margin-top: 8px; padding: 5px 14px;
+            background: #4285F4; color: white; border: none; border-radius: 4px;
+            cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; -webkit-appearance: none;
         }
         .popup-edit-btn:active { background: #3367d6; }
     </style>
@@ -204,21 +165,24 @@ var LAYER_URLS = {
     regional: 'forgotten-realms-lighter.png',
     atlas:    'atlas.png'
 };
-var imageBounds = [[0, 0], [2797, 4063]];   // [height, width] in pixels
+var imageBounds = [[0, 0], [2797, 4063]];
 
 // ─────────────────────────────────────────────────────────
 //  MAP INIT
 //
-//  IMPORTANT: do NOT add tap:false here.
-//  Leaflet's built-in tap handler converts touchstart/touchend
-//  into a synthetic 'click' event on markers. Disabling it
-//  breaks mobile pin taps entirely.
+//  closePopupOnClick: false  ← CRITICAL for mobile.
+//  When autoPan fires it moves the map; without this, the
+//  resulting phantom touch on the shifted map background
+//  would immediately close the popup that just opened.
+//  On desktop the popup is shown on hover (not click), so
+//  this option has no negative effect there.
 // ─────────────────────────────────────────────────────────
 var map = L.map('map', {
-    crs:     L.CRS.Simple,
-    minZoom: -5,
-    maxZoom:  5,
-    zoomSnap: 0.5
+    crs:               L.CRS.Simple,
+    minZoom:           -5,
+    maxZoom:            5,
+    zoomSnap:           0.5,
+    closePopupOnClick: false    // ← stops ghost-click closing popup on mobile
 });
 
 var imageOverlay = L.imageOverlay(LAYER_URLS.regional, imageBounds).addTo(map);
@@ -260,7 +224,6 @@ function makePinSVG(color) {
         + '</svg>'
     );
 }
-
 function makeIcon(color) {
     return L.icon({ iconUrl:makePinSVG(color), iconSize:[24,36], iconAnchor:[12,36], popupAnchor:[0,-38] });
 }
@@ -268,14 +231,13 @@ function makeIcon(color) {
 var swatchContainer = document.getElementById('colorSwatches');
 PIN_COLORS.forEach(function(c) {
     var sw = document.createElement('div');
-    sw.className        = 'color-swatch' + (c.hex === selectedColor ? ' selected' : '');
+    sw.className = 'color-swatch' + (c.hex === selectedColor ? ' selected' : '');
     sw.style.background = c.hex;
     if (c.hex === '#f5f5f5') sw.style.border = '3px solid #ccc';
     sw.title = c.name; sw.dataset.hex = c.hex;
     sw.onclick = function() { setSwatchSelection(c.hex); };
     swatchContainer.appendChild(sw);
 });
-
 function setSwatchSelection(hex) {
     selectedColor = hex;
     document.querySelectorAll('.color-swatch').forEach(function(s) {
@@ -287,15 +249,33 @@ function setSwatchSelection(hex) {
 }
 
 // ─────────────────────────────────────────────────────────
-//  POPUP
+//  POPUP OPTIONS
+//
+//  Two separate configs:
+//
+//  Desktop – autoPan:true so popup is always in viewport.
+//
+//  Mobile  – autoPan:false to prevent the known Leaflet bug
+//  where autopanning fires a phantom touch event on the
+//  now-shifted map background, closing the popup instantly.
+//  The popup appears at the pin location which is already
+//  visible (the user just tapped it), so no pan is needed.
 // ─────────────────────────────────────────────────────────
-var POPUP_OPTIONS = {
+var POPUP_OPTIONS_DESKTOP = {
     autoPan:                   true,
     autoPanPaddingTopLeft:     L.point(10, 90),
     autoPanPaddingBottomRight: L.point(10, 20),
-    maxWidth:                  260,
-    maxHeight:                 220
+    maxWidth:  260,
+    maxHeight: 220
 };
+var POPUP_OPTIONS_MOBILE = {
+    autoPan:   false,    // ← no pan = no phantom close
+    maxWidth:  260,
+    maxHeight: 300
+};
+function popupOpts() {
+    return isTouchDevice ? POPUP_OPTIONS_MOBILE : POPUP_OPTIONS_DESKTOP;
+}
 
 var lastOpenedLayer = null;
 
@@ -347,7 +327,6 @@ function switchTab(tab) {
 //  MODAL
 // ─────────────────────────────────────────────────────────
 var currentLayer = null;
-
 function showModal(layer) {
     if (layer.isPopupOpen()) layer.closePopup();
     currentLayer = layer;
@@ -358,7 +337,6 @@ function showModal(layer) {
     document.getElementById('modalOverlay').classList.add('active');
     setTimeout(function() { document.getElementById('pinName').focus(); }, 50);
 }
-
 function saveEdit() {
     if (!currentLayer) return;
     var name  = document.getElementById('pinName').value.trim();
@@ -369,17 +347,15 @@ function saveEdit() {
     currentLayer._customColor = color;
     if (currentLayer.setIcon) currentLayer.setIcon(makeIcon(color));
     var html = buildPopupHtml(name, desc);
-    if (!currentLayer.getPopup()) { currentLayer.bindPopup(html, POPUP_OPTIONS); }
+    if (!currentLayer.getPopup()) { currentLayer.bindPopup(html, popupOpts()); }
     else                          { currentLayer.setPopupContent(html); }
     cancelEdit();
     showToast('Pin saved!');
 }
-
 function cancelEdit() {
     currentLayer = null;
     document.getElementById('modalOverlay').classList.remove('active');
 }
-
 document.getElementById('modalOverlay').addEventListener('click', function(e) {
     if (e.target === this) cancelEdit();
 });
@@ -388,42 +364,44 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') cance
 // ─────────────────────────────────────────────────────────
 //  ATTACH EVENTS
 //
-//  DESKTOP – hover-with-grace-period model:
-//    mouseover pin       → cancel pending close, open popup
-//    mouseout  pin       → start 200 ms close timer
-//    mouseenter popup    → cancel pending close      ← KEY FIX
-//    mouseleave popup    → start 200 ms close timer
-//    click     pin       → cancel timer, open modal
+//  DESKTOP model (unchanged from previous working version):
+//    mouseover → open popup (with 200ms grace-period close)
+//    mouseenter popup → cancel close timer
+//    click → open modal
 //
-//  Moving the cursor from pin → popup bubble now works
-//  because mouseenter on the bubble fires before the 200 ms
-//  timer expires and cancels the close.
+//  MOBILE model (completely rewritten):
+//    We do NOT rely on Leaflet's synthesised 'click' event.
+//    Instead we attach native touchstart/touchend directly
+//    to the marker's DOM element via layer.getElement().
 //
-//  MOBILE – tap model:
-//    Leaflet's tap handler synthesises a 'click' from touch.
-//    We must NOT disable it (no tap:false on the map).
-//    tap pin (popup closed) → open popup (stays open)
-//    tap pin (popup open)   → close popup
-//    tap "Edit Pin" button  → open modal
+//    Why native touch?
+//    Leaflet's tap handler → synthesised click → openPopup()
+//    → autoPan moves map → phantom touch on background →
+//    closePopupOnClick fires → popup closes immediately.
+//    By going native + autoPan:false we cut every step of
+//    that failure chain.
+//
+//    We also call e.preventDefault() on touchend to kill
+//    the ghost click that iOS fires 300ms later, and
+//    e.stopPropagation() so the map container doesn't see
+//    this touch (which would close the popup via our
+//    map-background listener below).
 // ─────────────────────────────────────────────────────────
-var hoverTimer = null;   // global; only one popup open at a time
+var hoverTimer = null;
 
 function attachEvents(layer) {
     if (!(layer instanceof L.Marker)) return;
 
-    // ── Shared: runs whenever this marker's popup opens ──
     layer.on('popupopen', function(evt) {
         lastOpenedLayer = layer;
         clearTimeout(hoverTimer);
 
+        // Desktop only: hook popup element to keep it alive on hover
         if (!isTouchDevice) {
-            // Hook the popup element so moving into it cancels the close timer.
             var popupEl = evt.popup.getElement();
             if (popupEl) {
-                // Tear down any listeners from a previous open cycle
                 if (popupEl._hoverEnter) popupEl.removeEventListener('mouseenter', popupEl._hoverEnter);
                 if (popupEl._hoverLeave) popupEl.removeEventListener('mouseleave', popupEl._hoverLeave);
-
                 popupEl._hoverEnter = function() { clearTimeout(hoverTimer); };
                 popupEl._hoverLeave = function() {
                     hoverTimer = setTimeout(function() { layer.closePopup(); }, 200);
@@ -434,43 +412,96 @@ function attachEvents(layer) {
         }
     });
 
-    layer.on('popupclose', function() {
-        clearTimeout(hoverTimer);
-    });
+    layer.on('popupclose', function() { clearTimeout(hoverTimer); });
 
-    // ── Desktop ──────────────────────────────────────────
     if (!isTouchDevice) {
+        // ── Desktop ──────────────────────────────────────
         layer.on('mouseover', function() {
             if (document.getElementById('modalOverlay').classList.contains('active')) return;
             clearTimeout(hoverTimer);
             layer.openPopup();
         });
-
         layer.on('mouseout', function() {
-            // Grace period — popup's mouseenter will cancel this
-            // if the cursor reaches the bubble in time.
             hoverTimer = setTimeout(function() { layer.closePopup(); }, 200);
         });
-
         layer.on('click', function(e) {
             L.DomEvent.stopPropagation(e);
             clearTimeout(hoverTimer);
             showModal(layer);
         });
 
-    // ── Mobile ───────────────────────────────────────────
     } else {
-        // Leaflet synthesises 'click' from the tap gesture automatically.
-        // Just listen to it — do NOT preventDefault or the tap is swallowed.
-        layer.on('click', function(e) {
-            L.DomEvent.stopPropagation(e);
-            if (layer.isPopupOpen()) {
-                layer.closePopup();
-            } else {
-                layer.openPopup();
-            }
-        });
+        // ── Mobile ───────────────────────────────────────
+        // Bind native touch events to the marker's actual DOM element.
+        // We do this after the marker is on the map (element exists),
+        // or wait for the 'add' event if called before render.
+        function bindNativeTouch() {
+            var el = layer.getElement();
+            if (!el) return;
+
+            // Tear down any previous listeners to avoid stacking
+            if (el._mTouchStart) el.removeEventListener('touchstart', el._mTouchStart);
+            if (el._mTouchEnd)   el.removeEventListener('touchend',   el._mTouchEnd);
+
+            var tapStartX, tapStartY;
+
+            el._mTouchStart = function(e) {
+                // Record start position to distinguish tap from drag
+                if (e.touches.length === 1) {
+                    tapStartX = e.touches[0].clientX;
+                    tapStartY = e.touches[0].clientY;
+                }
+            };
+
+            el._mTouchEnd = function(e) {
+                if (e.changedTouches.length !== 1) return;
+                var dx = Math.abs(e.changedTouches[0].clientX - tapStartX);
+                var dy = Math.abs(e.changedTouches[0].clientY - tapStartY);
+                // Ignore if the finger moved more than 10px — that's a drag/scroll
+                if (dx > 10 || dy > 10) return;
+
+                // Prevent the 300ms ghost click iOS fires after touchend,
+                // and stop bubbling so the map-background handler doesn't fire
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (layer.isPopupOpen()) {
+                    layer.closePopup();
+                } else {
+                    layer.openPopup();
+                }
+            };
+
+            el.addEventListener('touchstart', el._mTouchStart, { passive: true });
+            el.addEventListener('touchend',   el._mTouchEnd,   { passive: false });
+        }
+
+        // getElement() returns null until the marker is actually rendered
+        if (layer.getElement()) {
+            bindNativeTouch();
+        } else {
+            layer.once('add', bindNativeTouch);
+        }
     }
+}
+
+// ─────────────────────────────────────────────────────────
+//  MOBILE BACKGROUND TAP → close open popup
+//
+//  Since closePopupOnClick:false, we handle this ourselves.
+//  We listen on the map container with a native touchend.
+//  Taps on markers call stopPropagation so they never reach
+//  here; only genuine background taps do.
+// ─────────────────────────────────────────────────────────
+if (isTouchDevice) {
+    map.getContainer().addEventListener('touchend', function() {
+        if (lastOpenedLayer && lastOpenedLayer.isPopupOpen()) {
+            // Only close if the map wasn't being dragged
+            if (!map.dragging.moved()) {
+                lastOpenedLayer.closePopup();
+            }
+        }
+    }, { passive: true });
 }
 
 // ─────────────────────────────────────────────────────────
@@ -481,7 +512,7 @@ map.on(L.Draw.Event.CREATED, function(e) {
     if (e.layerType === 'marker') {
         layer.setIcon(makeIcon(selectedColor));
         layer._customColor = selectedColor;
-        layer.bindPopup(buildPopupHtml('', ''), POPUP_OPTIONS);
+        layer.bindPopup(buildPopupHtml('', ''), popupOpts());
     }
     drawnItems.addLayer(layer);
     attachEvents(layer);
@@ -504,7 +535,6 @@ function switchLayer(name) {
     });
     showToast('Switched to ' + name.charAt(0).toUpperCase() + name.slice(1) + ' view');
 }
-
 function openLayerPanel() {
     if (!layerBtnRef) return;
     var rect  = layerBtnRef.getBoundingClientRect();
@@ -515,12 +545,10 @@ function openLayerPanel() {
     panel.style.lineHeight = rect.height + 'px';
     panel.classList.add('open');
 }
-
 function closeLayerPanel() {
     document.getElementById('layerActionsPanel').classList.remove('open');
     if (layerBtnRef) layerBtnRef.classList.remove('layer-active');
 }
-
 document.addEventListener('click', function(e) {
     var panel = document.getElementById('layerActionsPanel');
     if (!panel.classList.contains('open')) return;
@@ -538,14 +566,12 @@ var MapToolbarControl = L.Control.extend({
         var c = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
         L.DomEvent.disableClickPropagation(c);
         L.DomEvent.disableScrollPropagation(c);
-
         function btn(icon, tip, fn) {
             var a = L.DomUtil.create('a', 'custom-map-btn', c);
             a.innerHTML = icon; a.href = '#'; a.title = tip;
             L.DomEvent.on(a, 'click', function(e) { L.DomEvent.preventDefault(e); fn(a); });
             return a;
         }
-
         btn('💾', 'Save Map',    function()  { saveMap(); });
         btn('📂', 'Load Map',    function()  { document.getElementById('fileInput').click(); });
         btn('🌍', 'Text Layers', function(a) {
@@ -590,7 +616,6 @@ function saveMap() {
     a.download = 'my-map-pins.json'; a.click();
     showToast('Map saved as my-map-pins.json!');
 }
-
 function loadMap(event) {
     var file = event.target.files[0]; if (!file) return;
     var reader = new FileReader();
@@ -605,7 +630,6 @@ function loadMap(event) {
     reader.readAsText(file);
     event.target.value = '';
 }
-
 function restoreItem(item) {
     if (item.type === 'marker') {
         var color = item.color || PIN_COLORS[0].hex;
@@ -613,7 +637,7 @@ function restoreItem(item) {
         layer._customName  = item.name  || '';
         layer._customDesc  = item.desc  || '';
         layer._customColor = color;
-        layer.bindPopup(buildPopupHtml(item.name, item.desc), POPUP_OPTIONS);
+        layer.bindPopup(buildPopupHtml(item.name, item.desc), popupOpts());
         drawnItems.addLayer(layer);
         attachEvents(layer);
     } else if (item.type === 'shape' && item.geojson) {
