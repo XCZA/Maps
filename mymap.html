@@ -442,11 +442,15 @@ function attachEvents(layer) {
         // Single tap toggles popup; Edit button inside popup opens modal
         layer.on('click', function(e) {
             L.DomEvent.stopPropagation(e);
-            if (layer.isPopupOpen()) {
-                layer.closePopup();
-            } else {
-                layer.openPopup();
-            }
+            L.DomEvent.preventDefault(e);
+            
+            setTimeout(() => {
+                if (layer.isPopupOpen()) {
+                    layer.closePopup();
+                } else {
+                    layer.openPopup();
+                }
+            }, 10);
         });
     } else {
         // Hover shows popup, click opens editor
