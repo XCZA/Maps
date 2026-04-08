@@ -229,7 +229,8 @@ var map = L.map('map', {
     minZoom:  -5,
     maxZoom:   5,
     zoomSnap:  0.5,
-    tap: false
+    tap: false,
+    closePopupOnClick: false
 });
 
 var imageOverlay = L.imageOverlay(LAYER_URLS.regional, imageBounds).addTo(map);
@@ -438,19 +439,24 @@ function attachEvents(layer) {
         lastOpenedLayer = layer;
     });
 
-    if (isTouchDevice) {
-        // Single tap toggles popup; Edit button inside popup opens modal
+        if (isTouchDevice) {
         layer.on('click', function(e) {
             L.DomEvent.stopPropagation(e);
             L.DomEvent.preventDefault(e);
-            
-            setTimeout(() => {
-                if (layer.isPopupOpen()) {
-                    layer.closePopup();
-                } else {
-                    layer.openPopup();
-                }
-            }, 10);
+    
+            if (layer.isPopupOpen()) {
+                layer.closePopup();
+            } else {
+                // Open popup + force it to stay open during auto-pan
+                layer.openPopup();
+    
+                // Extra protection: re-open after a tiny delay (helps when panning happens)
+                setTimeout(() => {
+                    if (!layer.isPopupOpen()) {
+                        layer.openPopup();
+                    }
+                }, 50);
+            }
         });
     } else {
         // Hover shows popup, click opens editor
