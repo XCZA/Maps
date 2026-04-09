@@ -1,0 +1,186 @@
+[
+  {
+    "type": "marker",
+    "lat": 2130,
+    "lng": 1226,
+    "name": "Ahghairon's Dragonward",
+    "desc": "- **Location:** Waterdeep — centered on Ahghairon's Tower; the dome extends approximately **25,600 feet** across the city\n- **Type:** Wizard mythal\n- **Creator:** The archmage Ahghairon, using the **Dragonstaff of Ahghairon** as a focus\n- **Created:** c. 10th century DR, shortly after Ahghairon became Lord of Waterdeep\n- **Status:** 🟢 Active\n- **Effects:** Creates a protective dome compelling dragons and draconic-blooded creatures to leave the city. Only those carrying the Dragonstaff may bypass it. First activated when Ranressa Shiard arrived atop a copper dragon, causing panic in the streets. Refreshed by successive holders of the Dragonstaff.\n- **Races involved:** Created by a **human** archmage; protects a multicultural city of humans, elves, dwarves, halflings, and others\n- **Notes:** Often debated as a specialized dragonward rather than a true mythal.",
+    "color": "#2E7D32"
+  },
+  {
+    "type": "marker",
+    "lat": 1495.530842209548,
+    "lng": 1389.1112716409725,
+    "name": "Candlekeep's Great Shield",
+    "desc": "- **Location:** Candlekeep monastery-library on the Sword Coast, south of Baldur's Gate\n- **Type:** Elven High Magic (likely)\n- **Creator:** Unknown; lore hints at elven High Mage assistance. Can only be raised by the **Keeper of the Tomes**.\n- **Created:** Unknown\n- **Status:** 🟡 Dormant (activatable)\n- **Effects:** When raised, forms a **Great Shield** that repels everything except air, water, and sound. Separate preservation wards continually desalinate air and water and protect books from pests and mold. Activated only in dire need; used only a handful of times in Candlekeep's history.\n- **Races involved:** Likely **elves** in construction; current custodians are human monks and the Avowed",
+    "color": "#F9A825"
+  },
+  {
+    "type": "marker",
+    "lat": 2487,
+    "lng": 3165,
+    "name": "Dracorage Mythal",
+    "desc": "- **Location:** Faerûn-wide; capstone located in a remote valley near the **Novularond** mountains in far northern Faerûn — littered with avariel and dragon bones\n- **Type:** True elven High Magic; linked to the **King-Killer Star** (Keryx)\n- **Creator:** A circle of **elven High Mages** at the end of the Time of Dragons\n- **Created:** c. −25,000 DR\n- **Destroyed:** Nightal 6, 1373 DR\n- **Status:** 🔴 Destroyed\n- **Effects:** Triggered periodic Rages of Dragons, driving dragons and dragon-blooded creatures insane whenever the King-Killer Star appeared. In 1372 DR, the lich **Sammaster** corrupted the capstone with Abyssal magic to create a *continuous* rage ravaging all of Faerûn. A coalition of metallic dragons, elven heroes, and adventurers destroyed the capstone on Nightal 6, 1373 DR, ending the Dracorage permanently.\n- **Races involved:** Cast by **elves**; affected **all dragonkind**; destroyed by **dragons, elves, humans**, and adventurers",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 1901.410134610626,
+    "lng": 2643.872254856501,
+    "name": "Elven Court",
+    "desc": "- **Location:** Deep within the Elven Court in the Cormanthor Forest, roughly south of Elventree\n- **Type:** Ancient elven High Magic mythal; divine-sanctified site tied directly to the Seldarine\n- **Creator:** Early **elven High Mages, priests, and nobles**, guided by visions of Corellon Larethian\n- **Founded:** c. −10,000 DR (immediately following the end of the Crown Wars and the banishment of the drow)\n- **Status:** 🔴 Destroyed (site remains a haunted, desecrated ruin)\n- **Effects:**\n\t- Created a **holy, inviolable sanctuary** where violence, weapons, and conflict were forbidden—elves entered unarmed in absolute trust\n\t- Functioned as the **spiritual and judicial heart of elvenkind**, where the fate of entire nations (e.g., the Crown Wars) was decided\n\t- Imbued the land with **divine authority and truth-binding influence**, causing rulings of the Court to be universally respected as law\n\t- Maintained a **perfectly harmonious environment**, requiring no formal governance—order emerged from shared reverence and mythal influence\n\t- Likely suppressed hostile magic and aggression (consistent with mythal behavior), reinforcing peace and sanctity\n\t- During the Dark Court Slaughter, drow and duergar used **darkness magic and surprise** to bypass these protections, leading to catastrophic failure and desecration of the site\n- **Races involved:** Cast by **elves**; served all **Tel’Quessir**; destroyed by **drow and duergar** forces",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 1960.0999974491097,
+    "lng": 1892.217746455201,
+    "name": "Evereska",
+    "desc": "- **Location:** A hidden valley encircled by twelve hills in the **Western Heartlands**, near the Shaeradim and Greycloak Hills\n- **Type:** True elven High Magic\n- **Creator:** **Evereskan High Mages** (individual names unspecified)\n- **Created:** Antiquity (exact date unknown)\n- **Status:** 🟡 Unstable — damaged 1372 DR\n- **Effects:** Once controlled the valley's weather and physical conditions, inhibited certain magic, and protected against blight and disease. A peaceful garden city devoted to art and learning. In 1372 DR, freed **phaerimms** besieged the valley and shattered the mythal; it now flickers unpredictably as **wild magic**, cloaking the valley in mist and rain. Evereskans struggle to rebuild while younger elves guard ruined mansions from looters.\n- **Races involved:** **Moon elves** and **sun elves**; attacked by **phaerimms** and subsequently menaced by human looters",
+    "color": "#F9A825"
+  },
+  {
+    "type": "marker",
+    "lat": 1647.5588001646556,
+    "lng": 217.78888860545663,
+    "name": "Evermeet",
+    "desc": "- **Location:** Evermeet — a large island far west of Faerûn, across the Trackless Sea\n- **Type:** True elven High Magic — one of the oldest and greatest\n- **Creator:** An enormous circle of **elven High Mages** performing the **First Sundering**\n- **Created:** −17,600 DR\n- **Status:** 🟢 Active\n- **Effects:** The creation ritual reshaped the world itself, causing earthquakes, floods, and casualties across Toril and Abeir. Evermeet's mythal and extensive wards protect the island from non-elven intrusion, control weather, prevent planar travel, and allow elves to patrol the surrounding seas. Wards have been strengthened over millennia against drow assaults, dragon attacks, and planar incursions.\n- **Races involved:** Created by **sun, moon, and green elves**; no other races permitted to settle permanently",
+    "color": "#2E7D32"
+  },
+  {
+    "type": "marker",
+    "lat": 2543,
+    "lng": 1488.5,
+    "name": "Herald's Holdfast",
+    "desc": "- **Location:** A secluded fortress in the foothills north of Silverymoon\n- **Type:** ⚠️ *Not* a true mythal — unique layered wards\n- **Creator:** Unknown\n- **Created:** Unknown (predates modern Silverymoon)\n- **Status:** 🟢 Active\n- **Effects:** Prevents **orcs** from entering and negates certain kinds of magic. Has withstood attacks by powerful mages, orc hordes, beholders, and reportedly even the tarrasque. Because it is not tied to the Weave as a true mythal, its creation and powers are unique.\n- **Races involved:** Primarily **humans and elves** (heralds); bars **orcs**",
+    "color": "#2E7D32"
+  },
+  {
+    "type": "marker",
+    "lat": 2425.0227060792645,
+    "lng": 1530.1790744876887,
+    "name": "Myth Adofhaer",
+    "desc": "- **Location:** Hidden city of Silvaundae, deep in the High Forest\n- **Type:** True elven High Magic\n- **Creator:** **Sun-elf High Mages**\n- **Created:** Before the fall of Cormanthyr (exact date unknown)\n- **Status:** ❓ Unknown — city is believed to exist in stasis on a pocket plane\n- **Effects:** Fearing invasion, the High Mages used High Magic to **shunt the entire city out of Faerûn** into a pocket plane. The city and its inhabitants remain in stasis, awaiting unknown conditions to return. The mythal likely protects the suspended city from scrying and planar intrusion.\n- **Races involved:** **Sun elves** exclusively\n- **Notes:** The city may re-emerge if prophecy is fulfilled.",
+    "color": "#6A1B9A"
+  },
+  {
+    "type": "marker",
+    "lat": 1878.0756108314702,
+    "lng": 2531.44227664784,
+    "name": "Myth Drannor",
+    "desc": "- **Location:** Cormanthor forest — capital of ancient Cormanthyr; the mythal extended beyond the city into surrounding woodlands\n\t- The city itself was divided into **western noble/temple districts** and the eastern **Dlabraddath** (built to house non-elven settlers), connected by bridges over forest streams\n\t- Included vast substructures such as the **Dwarven Dungeons**, an underground city built by dwarven allies\n- **Type:** True elven High Magic\n- **Creator:** **High Mage Mythanthor** (Mythanthar) and a circle of High Mages, following Coronal Eltargrim's vision\n- **Created:** 261 DR\n- **Status:** 🔴 Shattered (1487 DR)\n  \n- **Effects:** Created a paradise where many races could coexist — keeping out **drow and demons**, preventing fires, and granting constant healing, longevity, and magical enhancement. The mythal regulated weather and sustained Myth Drannor as a **self-maintaining magical ecosystem**, while also enabling vast arcane infrastructure such as **permanent portals**, mythal-augmented spellcasting, and large-scale magical experimentation throughout the city.\n  \n  During the **Weeping War** (712–714 DR), the mythal became corrupted and its protections failed, allowing demonic forces to overrun the city. In the centuries that followed, the damaged mythal degraded into increasingly **unstable and unpredictable effects**, including the formation of **dead magic zones** (both fixed and drifting), interference with **teleportation and divination**, and erratic surges that could either aid (slowed falls, extended light) or harm (mutations, magical anomalies) those within its bounds.\n  \n  The mythal was later seized and reshaped by **Lady Sarya Dlardrageth** (a half-demon fey'ri), then restored by the mage **Araevin Teshurr** in 1374 DR with renewed protective functions. However, in **1487 DR**, the flying city **Thultanthar** crashed into Myth Drannor, catastrophically shattering the mythal. In its aftermath, the ruins became a **megadungeon-scale magical wasteland**, riddled with wild magic zones, broken arcane constructs, planar gateways, and remnants of centuries of unchecked magical experimentation.\n  \n- **Races involved:** Initially **sun and moon elves**; opened to **humans, dwarves, gnomes, halflings**, and others; destroyed partly through **demon** incursion and ultimately **Shadovar** action",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 774.5,
+    "lng": 1865,
+    "name": "Myth Dyraalis",
+    "desc": "- **Location:** Hidden in the Forest of Mir, on the border between Tethyr and Calimshan\n- **Type:** True elven High Magic (Keltormir era)\n- **Creator:** **Elven High Mages**\n- **Created:** c. −375 DR\n- **Status:** 🟢 Active (believed)\n- **Effects:** Renders the city **invisible and undetectable** except to elves, gnomes, and a few other specific races. Those who cannot perceive it and attempt to cross its boundaries are **teleported to the opposite side**. The city and its treasures may still lie hidden beneath brambles.\n- **Races involved:** **Wood elves** and possibly **forest gnomes**; only elves and gnomes can perceive the city",
+    "color": "#2E7D32"
+  },
+  {
+    "type": "marker",
+    "lat": 2475.25,
+    "lng": 1748.75,
+    "name": "Myth Glaurach",
+    "desc": "- **Location:** Near the ruins of Glaurachyndaar (later **Hellgate Keep**) in the High Forest\n- **Type:** True elven High Magic (variant *create mythal* ritual)\n- **Creator:** A circle including **Ecamane Truesilver**, **Khelben Arunsun** (the Blackstaff), **Tisharu Craulnober**, and **Tellshyll the Aged**; participants from Ascalhorn, Eaerlann, Evereska, Silverymoon, and Myth Drannor\n- **Created:** Year of the Turning Leaf, 590 DR\n- **Destroyed:** 864 DR\n- **Status:** 🔴 Abandoned/fallen\n- **Effects:** Protected Glaurachyndaar and barred anyone who had **eaten human flesh** from entering. The orc warlord **Wund Nethertusk** discovered this loophole and instructed his horde to fast before the attack; they infiltrated and sacked the city in 864 DR. The vine-covered ruins reportedly retain the mythal's ability to **restore charges to magic items**.\n- **Races involved:** Created by **humans and elves** together; the city fell to **orcs**",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 539.876027435929,
+    "lng": 826.607827207074,
+    "name": "Myth Iiscar",
+    "desc": "- **Location:** Isle of Lantan\n- **Type:** Wizard mythal — non-elven epic magic\n- **Creator:** Likely **human and gnome spellcasters** from Lantan\n- **Created:** Unknown\n- **Destroyed:** Unknown (before the 14th century DR)\n- **Status:** 🔴 Destroyed\n- **Effects:** Allowed inhabitants to **fly** — possibly through levitation or winged flight. The Lantanese refuse to discuss it. Ruins said to lie at the center of Lantan Island.\n- **Races involved:** **Humans and gnomes** (Lantanese) — notably *not* elves",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 1283,
+    "lng": 1678.25,
+    "name": "Myth Lharast",
+    "desc": "- **Location:** Originally Amn; later relocated to a **demiplane**, reachable only on nights of the **full moon**\n- **Type:** Wizard mythal — non-elven\n- **Creator:** A **cabal of spellcasters** (likely humans and lycanthropes), as a sanctuary for worshipers of Selûne\n- **Created:** Mid-to-late 700s DR\n- **Status:** 🟢 Presumably intact (relocated)\n- **Effects:** Served as a haven for **benign lycanthropes** and non-orthodox Selûnite worshippers. Collapsed when a cabal of evil wizards clashed with the mythal's lycanthrope guardians. Selûne intervened directly, blasting the city out of Faerûn entirely. Descendants of those trapped still search for a way home.\n- **Races involved:** **Humans and lycanthropes** (werewolves, weretigers, etc.); the goddess **Selûne** herself intervened",
+    "color": "#6A1B9A"
+  },
+  {
+    "type": "marker",
+    "lat": 1335.0176028802016,
+    "lng": 2786.000717874997,
+    "name": "Myth Nantar",
+    "desc": "- **Location:** Ruins beneath the Sea of Fallen Stars\n- **Type:** True elven High Magic — the only known **underwater mythal**\n- **Creator:** **Aquatic elven High Mages** (sea elves)\n- **Created:** −3002 DR\n- **Status:** ❓ Uncertain (15th century status unknown)\n- **Effects:** Allows both surface and aquatic creatures to **breathe underwater** within its field; grants **strength and endurance** to elves; bars most **evil aquatic creatures** from entering. Once protected a thriving sea-elven city shared by elves, merfolk, tritons, and other aquatic peoples. Its precise location is hidden and few can reach it.\n- **Races involved:** **Sea elves, merfolk, tritons**, and other aquatic races",
+    "color": "#6A1B9A"
+  },
+  {
+    "type": "marker",
+    "lat": 2217,
+    "lng": 2424,
+    "name": "Myth Ondath",
+    "desc": "- **Location:** Built on the ruins of Ondathel, north of the Moonsea; known in its time as the **City of Peace**, dedicated to Eldath\n- **Type:** True elven High Magic\n- **Creator:** High-mage priests of **Eldath** and Eldath-aligned elves and humans\n- **Created:** 555 DR\n- **Destroyed:** 633 DR (Year of the Chasms)\n- **Status:** 🔴 Destroyed\n- **Effects:** Provided peace and protection for its inhabitants. Destroyed when **Iyraclea the Ice Queen**, aided by the lich **Vrandak** and the artifact known as the **Gatekeeper's Crystal**, cast a magical winter that obliterated both the city and its mythal. All powers of the mythal were lost to history; survivors fled.\n- **Races involved:** **Elves and humans** devoted to Eldath; destroyed by **Iyraclea** and the undead lich **Vrandak**",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 1079.5,
+    "lng": 1601,
+    "name": "Myth Rhynn — also called Myth Ihynn",
+    "desc": "- **Location:** The **Keltormir** region, between Tethyr and Calimshan — an ancient tomb-city\n- **Type:** True elven High Magic\n- **Creator:** Unknown **elven High Mages**, raised to guard the spirits of fallen heroes\n- **Created:** Before −500 DR (Keltormir's heyday)\n- **Status:** 🔴 Corrupted/Ruined\n- **Effects:** Originally designed to **protect the spirits of elven heroes** from hostile magic and allow them to remain with their forests. After thousands of years of decay, the mythal now causes **nausea** in elves who approach and **animates the corpses** of other creatures. The site is haunted by **will-o'-wisps** and commanded by a **lich-like mage**.\n- **Races involved:** Created by **wood or green elves**; now inhabited by **undead**",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 1366.5,
+    "lng": 3223.5,
+    "name": "Myth Tarranvar",
+    "desc": "- **Location:** Ruined city in the Yuirwood (Aglarond)\n- **Type:** True elven High Magic\n- **Creator:** Likely **star-elf (Yuir) High Mages**\n- **Created:** Year of the Oaken Glade, 517 DR\n- **Status:** 🔴 Decayed/Ruined\n- **Effects:** Served as a sanctuary for the Yuir elves and their half-human descendants. Became isolated after Myth Drannor's fall in 714 DR; without maintenance the mythal decayed and the city fell to ruin. Details about its specific powers are lost.\n- **Races involved:** **Star elves (Yuir)** and **half-elves**; humans settled Aglarond around the same period\n- **Notes:** Canonical sources are scarce; some details remain speculative.",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 806.1017305526641,
+    "lng": 1735.2400410317875,
+    "name": "Myth Unnohyr",
+    "desc": "Created by wood elves of Keltormir; now inhabited by monstrous creatures, undead, and other dangers drawn to or spawned by the corrupted mythal",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 899.7933790598817,
+    "lng": 3370.778025916272,
+    "name": "Myth Valorthae",
+    "desc": "- **Location:** Somewhere in the Methwood, between Chessenta and Mulhorand\n- **Type:** Likely True elven High Magic (possibly Imaskari involvement)\n- **Creator:** Unknown — possibly elven or Imaskari\n- **Created:** Unknown (possibly pre-Imaskari)\n- **Status:** ❓ Sparsely documented\n- **Effects:** Lore implies the mythal renders the city **invisible** or cloaked from outsiders. May have been involved in conflicts between elves and the Imaskari. No official descriptions or dates are available.\n- **Races involved:** Likely **green or wild elves** of the Methwood; possibly **Imaskari**",
+    "color": "#6A1B9A"
+  },
+  {
+    "type": "marker",
+    "lat": 2668.5,
+    "lng": 1054.5,
+    "name": "Severed Hand — The Hand of the Seldarine",
+    "desc": "- **Location:** An elven fortress in a canyon at the base of the Spine of the World (Icewind Dale region)\n- **Type:** Attempted mythal — **catastrophic failure**\n- **Creator:** **Moon-elves of Iliyanbruen**; the fortress's archmage and fellow wizards attempted a hurried mythal-like ritual during an orc siege\n- **Status:** 🔴 Failed — site haunted by undead\n- **Effects:** The ritual went catastrophically wrong — possibly through sabotage or miscasting — killing every living creature in the fortress and **transforming elves and orcs alike into undead**. The haunted ruin became known as the Severed Hand. By **177 DR**, surviving Iliyanbruen elves destroyed the remaining orc-undead and abandoned the site entirely. The fortress remains a dungeon filled with undead and lingering magical effects.\n- **Races involved:** **Moon-elves** built the fortress; **orcs** besieged it; both were killed and turned **undead**",
+    "color": "#e53935"
+  },
+  {
+    "type": "marker",
+    "lat": 2514.1181605087695,
+    "lng": 1512.1478515674319,
+    "name": "Silverymoon",
+    "desc": "Several sites are not true mythals but possess powerful layered wards worthy of note.\n\n**Silverymoon** — The city's wards forbid spells with the death, evil, and teleportation descriptors, conjuration (summoning), and fire-based evocation, while providing a suite of defensive effects. Wards cover the city and extend **1,000 yards** beyond its walls. Created by Lady **Alustriel** and other high-level wizards; only those attuned by the city's leaders can access certain boons.",
+    "color": "#f5f5f5"
+  },
+  {
+    "type": "marker",
+    "lat": 824,
+    "lng": 1624,
+    "name": "Shoonach",
+    "desc": "**Shoonach — Imperial Mount** — Not a true mythal but a conglomeration of layered spells around the ruins of the Shoon Empire in Calimshan. Wild-magic zones, undead-containment wards, and metamagic effects make the site extremely dangerous.",
+    "color": "#f5f5f5"
+  },
+  {
+    "type": "marker",
+    "lat": 2128.25,
+    "lng": 1247.25,
+    "name": "Undermountain",
+    "desc": "**Undermountain** — The mad archmage **Halaster Blackcloak** laid countless magical layers beneath Waterdeep. These spells block teleportation and scrying and create dead-magic areas. While not a true mythal, the cumulative effect makes Undermountain uniquely perilous.",
+    "color": "#f5f5f5"
+  }
+]
