@@ -158,6 +158,7 @@
 </div>
 
 <script>
+    
 // ─────────────────────────────────────────────────────────
 //  CONFIG
 // ─────────────────────────────────────────────────────────
@@ -165,24 +166,26 @@ var LAYER_URLS = {
     regional: 'forgotten-realms-lighter.png',
     atlas:    'atlas.png'
 };
-var imageBounds = [[0, 0], [2797, 4063]];
+
+var IMAGE_WIDTH_MILES  = 2797;   // ← your image width in pixels
+var IMAGE_HEIGHT_MILES = 4063;   // ← your image height in pixels
+
+var imageBounds = [[0, 0], [IMAGE_HEIGHT_MILES, IMAGE_WIDTH_MILES]];
+
+// Custom CRS: 1 pixel = 1 mile
+var CustomCRS = L.extend({}, L.CRS.Simple, {
+    transformation: new L.Transformation(1, 0, 1, 0)
+});
 
 // ─────────────────────────────────────────────────────────
 //  MAP INIT
-//
-//  closePopupOnClick: false  ← CRITICAL for mobile.
-//  When autoPan fires it moves the map; without this, the
-//  resulting phantom touch on the shifted map background
-//  would immediately close the popup that just opened.
-//  On desktop the popup is shown on hover (not click), so
-//  this option has no negative effect there.
 // ─────────────────────────────────────────────────────────
 var map = L.map('map', {
-    crs:               L.CRS.Simple,
+    crs:               CustomCRS,
     minZoom:           -5,
     maxZoom:            5,
     zoomSnap:           0.5,
-    closePopupOnClick: false    // ← stops ghost-click closing popup on mobile
+    closePopupOnClick: false
 });
 
 var imageOverlay = L.imageOverlay(LAYER_URLS.regional, imageBounds).addTo(map);
