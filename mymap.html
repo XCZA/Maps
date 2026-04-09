@@ -493,9 +493,14 @@ function attachEvents(layer, readOnly) {
 //  MOBILE BACKGROUND TAP → close open popup
 // ─────────────────────────────────────────────────────────
 if (isTouchDevice) {
-    map.getContainer().addEventListener('touchend', function() {
+    map.getContainer().addEventListener('touchend', function(e) {
         if (lastOpenedLayer && lastOpenedLayer.isPopupOpen()) {
             if (!map.dragging.moved()) {
+                // If the finger lifted inside the open popup, the user was
+                // scrolling or tapping popup content — don't close it.
+                var popup = lastOpenedLayer.getPopup();
+                var popupEl = popup && popup.getElement();
+                if (popupEl && popupEl.contains(e.target)) return;
                 lastOpenedLayer.closePopup();
             }
         }
