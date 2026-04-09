@@ -167,24 +167,19 @@ var LAYER_URLS = {
     atlas:    'atlas.png'
 };
 
-var IMAGE_WIDTH_MILES  = 2797;   // ← your image width in pixels
-var IMAGE_HEIGHT_MILES = 4063;   // ← your image height in pixels
+// Your image dimensions in pixels
+var IMAGE_WIDTH_PIXELS  = 2797;
+var IMAGE_HEIGHT_PIXELS = 4063;
 
-var imageBounds = [[0, 0], [IMAGE_HEIGHT_MILES, IMAGE_WIDTH_MILES]];
+// We want 1 pixel = 1 mile for distance calculations
+var imageBounds = [[0, 0], [IMAGE_HEIGHT_PIXELS, IMAGE_WIDTH_PIXELS]];
 
-// Custom CRS: 1 pixel = 1 mile
-var CustomCRS = L.extend({}, L.CRS.Simple, {
-    transformation: new L.Transformation(1, 0, 1, 0)
-});
-
-// ─────────────────────────────────────────────────────────
-//  MAP INIT
-// ─────────────────────────────────────────────────────────
+// Simple CRS with NO transformation (this prevents squishing on high-DPI mobile)
 var map = L.map('map', {
-    crs:               CustomCRS,
-    minZoom:           -5,
-    maxZoom:            5,
-    zoomSnap:           0.5,
+    crs:               L.CRS.Simple,     // ← Use default Simple, not custom
+    minZoom:           -6,               // lowered a bit for comfort
+    maxZoom:            6,
+    zoomSnap:           0.25,            // smoother on mobile
     closePopupOnClick: false
 });
 
