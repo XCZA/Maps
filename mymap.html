@@ -26,8 +26,8 @@
         }
         .custom-map-btn.layer-active { background: #e8f0fe !important; }
 
-        /* ── Layer switcher slide-out panel ── */
-        #layerActionsPanel {
+        /* ── Generic slide-out flyout panel ── */
+        .flyout-panel {
             position: fixed;
             display: none;
             flex-direction: row;
@@ -39,16 +39,58 @@
             z-index: 1500;
             overflow: hidden;
         }
-        #layerActionsPanel.open { display: flex; }
-        .layer-action-btn {
+        .flyout-panel.open { display: flex; }
+        .flyout-action-btn {
             display: block; padding: 0 16px;
             font-size: 12px; font-weight: 600; color: #555;
             cursor: pointer; text-decoration: none; white-space: nowrap;
             border-right: 1px solid #ddd; transition: background 0.1s;
         }
-        .layer-action-btn:last-child { border-right: none; }
-        .layer-action-btn:hover { background: #f4f4f4; color: #222; }
-        .layer-action-btn.active-layer { color: #1565C0; background: #e8f0fe; }
+        .flyout-action-btn:last-child { border-right: none; }
+        .flyout-action-btn:hover { background: #f4f4f4; color: #222; }
+        .flyout-action-btn.active-layer { color: #1565C0; background: #e8f0fe; }
+
+        /* ── Pin layer overlay panel (vertical, wider) ── */
+        #pinLayerPanel {
+            position: fixed;
+            display: none;
+            flex-direction: column;
+            background: white;
+            border: 2px solid rgba(0,0,0,0.2);
+            border-left: none;
+            border-radius: 0 6px 6px 0;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            z-index: 1500;
+            min-width: 180px;
+            padding: 6px 0;
+        }
+        #pinLayerPanel.open { display: flex; }
+        #pinLayerPanel .panel-header {
+            font-size: 10px; font-weight: 700; color: #999;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 4px 14px 6px; border-bottom: 1px solid #eee; margin-bottom: 2px;
+        }
+        .pin-layer-row {
+            display: flex; align-items: center; gap: 10px;
+            padding: 7px 14px; cursor: pointer;
+            transition: background 0.1s;
+        }
+        .pin-layer-row:hover { background: #f4f4f4; }
+        .pin-layer-toggle {
+            width: 16px; height: 16px; border-radius: 3px;
+            border: 2px solid #bbb; background: white;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: background 0.15s, border-color 0.15s;
+        }
+        .pin-layer-toggle.on { background: #4285F4; border-color: #4285F4; }
+        .pin-layer-toggle.on::after { content: '✓'; color: white; font-size: 10px; line-height: 1; }
+        .pin-layer-label {
+            font-size: 13px; font-weight: 600; color: #444;
+        }
+        .pin-layer-count {
+            margin-left: auto; font-size: 11px; color: #aaa; font-weight: 400;
+        }
+        .pin-layer-loading { font-size: 11px; color: #aaa; margin-left: auto; }
 
         /* ── Toast ── */
         #toast {
@@ -129,9 +171,23 @@
 <div id="toast"></div>
 <input type="file" id="fileInput" accept=".json" onchange="loadMap(event)">
 
-<div id="layerActionsPanel">
-    <a class="layer-action-btn active-layer" data-layer="regional" onclick="switchLayer('regional')">Regional</a>
-    <a class="layer-action-btn"              data-layer="atlas"    onclick="switchLayer('atlas')">Atlas</a>
+<!-- Base layer switcher flyout -->
+<div id="layerActionsPanel" class="flyout-panel">
+    <a class="flyout-action-btn active-layer" data-layer="regional" onclick="switchLayer('regional')">Regional</a>
+    <a class="flyout-action-btn"              data-layer="atlas"    onclick="switchLayer('atlas')">Atlas</a>
+    <a class="flyout-action-btn"              data-layer="terrain"  onclick="switchLayer('terrain')">Terrain</a>
+</div>
+
+<!-- Save / Load flyout -->
+<div id="saveLoadPanel" class="flyout-panel">
+    <a class="flyout-action-btn" onclick="saveMap(); closeSaveLoadPanel();">💾 Save</a>
+    <a class="flyout-action-btn" onclick="closeSaveLoadPanel(); document.getElementById('fileInput').click();">📂 Load</a>
+</div>
+
+<!-- Pin layer overlay panel (vertical) -->
+<div id="pinLayerPanel">
+    <div class="panel-header">Pin Layers</div>
+    <!-- rows injected by JS -->
 </div>
 
 <div id="modalOverlay">
@@ -163,26 +219,26 @@
 // ─────────────────────────────────────────────────────────
 var LAYER_URLS = {
     regional: 'forgotten-realms-lighter.png',
-    atlas:    'atlas.png'
+    atlas:    'atlas.png',
+    terrain:  'terrain.png'
 };
 var imageBounds = [[0, 0], [2797, 4063]];
 
+// Predefined pin layer overlays (fetched from repo root)
+var PIN_LAYER_DEFS = [
+    { id: 'mythallars', label: 'Mythallars', file: 'Mythallars.json' },
+    { id: 'mythals',    label: 'Mythals',    file: 'Mythals.json'    }
+];
+
 // ─────────────────────────────────────────────────────────
 //  MAP INIT
-//
-//  closePopupOnClick: false  ← CRITICAL for mobile.
-//  When autoPan fires it moves the map; without this, the
-//  resulting phantom touch on the shifted map background
-//  would immediately close the popup that just opened.
-//  On desktop the popup is shown on hover (not click), so
-//  this option has no negative effect there.
 // ─────────────────────────────────────────────────────────
 var map = L.map('map', {
     crs:               L.CRS.Simple,
     minZoom:           -5,
     maxZoom:            5,
     zoomSnap:           0.5,
-    closePopupOnClick: false    // ← stops ghost-click closing popup on mobile
+    closePopupOnClick: false
 });
 
 var imageOverlay = L.imageOverlay(LAYER_URLS.regional, imageBounds).addTo(map);
@@ -250,26 +306,16 @@ function setSwatchSelection(hex) {
 
 // ─────────────────────────────────────────────────────────
 //  POPUP OPTIONS
-//
-//  Two separate configs:
-//
-//  Desktop – autoPan:true so popup is always in viewport.
-//
-//  Mobile  – autoPan:false to prevent the known Leaflet bug
-//  where autopanning fires a phantom touch event on the
-//  now-shifted map background, closing the popup instantly.
-//  The popup appears at the pin location which is already
-//  visible (the user just tapped it), so no pan is needed.
 // ─────────────────────────────────────────────────────────
 var POPUP_OPTIONS_DESKTOP = {
-    autoPan:                   true,
+    autoPan: true,
     autoPanPaddingTopLeft:     L.point(10, 90),
     autoPanPaddingBottomRight: L.point(10, 20),
     maxWidth:  260,
     maxHeight: 220
 };
 var POPUP_OPTIONS_MOBILE = {
-    autoPan:   false,    // ← no pan = no phantom close
+    autoPan:   false,
     maxWidth:  260,
     maxHeight: 300
 };
@@ -279,19 +325,23 @@ function popupOpts() {
 
 var lastOpenedLayer = null;
 
-function buildPopupHtml(name, desc) {
+function buildPopupHtml(name, desc, readOnly) {
     var html = '<div style="max-width:230px;">'
         + '<b style="font-size:14px;">' + (name || 'Unnamed Pin') + '</b>';
     if (desc) {
         html += '<hr style="margin:6px 0;border:none;border-top:1px solid #ddd;">'
             +   '<div style="font-size:13px;line-height:1.5;">' + marked.parse(desc) + '</div>';
     }
-    if (isTouchDevice) {
-        html += '<div style="margin-top:8px;border-top:1px solid #eee;padding-top:6px;">'
-            +   '<button class="popup-edit-btn" onclick="editFromPopup()">✏️ Edit Pin</button>'
-            +   '</div>';
+    if (!readOnly) {
+        if (isTouchDevice) {
+            html += '<div style="margin-top:8px;border-top:1px solid #eee;padding-top:6px;">'
+                +   '<button class="popup-edit-btn" onclick="editFromPopup()">✏️ Edit Pin</button>'
+                +   '</div>';
+        } else {
+            html += '<div class="popup-edit-hint">Click pin to edit</div>';
+        }
     } else {
-        html += '<div class="popup-edit-hint">Click pin to edit</div>';
+        html += '<div class="popup-edit-hint" style="color:#bbb;">Read-only layer</div>';
     }
     html += '</div>';
     return html;
@@ -346,7 +396,7 @@ function saveEdit() {
     currentLayer._customDesc  = desc;
     currentLayer._customColor = color;
     if (currentLayer.setIcon) currentLayer.setIcon(makeIcon(color));
-    var html = buildPopupHtml(name, desc);
+    var html = buildPopupHtml(name, desc, false);
     if (!currentLayer.getPopup()) { currentLayer.bindPopup(html, popupOpts()); }
     else                          { currentLayer.setPopupContent(html); }
     cancelEdit();
@@ -363,40 +413,15 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') cance
 
 // ─────────────────────────────────────────────────────────
 //  ATTACH EVENTS
-//
-//  DESKTOP model (unchanged from previous working version):
-//    mouseover → open popup (with 200ms grace-period close)
-//    mouseenter popup → cancel close timer
-//    click → open modal
-//
-//  MOBILE model (completely rewritten):
-//    We do NOT rely on Leaflet's synthesised 'click' event.
-//    Instead we attach native touchstart/touchend directly
-//    to the marker's DOM element via layer.getElement().
-//
-//    Why native touch?
-//    Leaflet's tap handler → synthesised click → openPopup()
-//    → autoPan moves map → phantom touch on background →
-//    closePopupOnClick fires → popup closes immediately.
-//    By going native + autoPan:false we cut every step of
-//    that failure chain.
-//
-//    We also call e.preventDefault() on touchend to kill
-//    the ghost click that iOS fires 300ms later, and
-//    e.stopPropagation() so the map container doesn't see
-//    this touch (which would close the popup via our
-//    map-background listener below).
 // ─────────────────────────────────────────────────────────
 var hoverTimer = null;
 
-function attachEvents(layer) {
+function attachEvents(layer, readOnly) {
     if (!(layer instanceof L.Marker)) return;
 
     layer.on('popupopen', function(evt) {
         lastOpenedLayer = layer;
         clearTimeout(hoverTimer);
-
-        // Desktop only: hook popup element to keep it alive on hover
         if (!isTouchDevice) {
             var popupEl = evt.popup.getElement();
             if (popupEl) {
@@ -415,7 +440,6 @@ function attachEvents(layer) {
     layer.on('popupclose', function() { clearTimeout(hoverTimer); });
 
     if (!isTouchDevice) {
-        // ── Desktop ──────────────────────────────────────
         layer.on('mouseover', function() {
             if (document.getElementById('modalOverlay').classList.contains('active')) return;
             clearTimeout(hoverTimer);
@@ -424,79 +448,53 @@ function attachEvents(layer) {
         layer.on('mouseout', function() {
             hoverTimer = setTimeout(function() { layer.closePopup(); }, 200);
         });
-        layer.on('click', function(e) {
-            L.DomEvent.stopPropagation(e);
-            clearTimeout(hoverTimer);
-            showModal(layer);
-        });
-
+        if (!readOnly) {
+            layer.on('click', function(e) {
+                L.DomEvent.stopPropagation(e);
+                clearTimeout(hoverTimer);
+                showModal(layer);
+            });
+        }
     } else {
-        // ── Mobile ───────────────────────────────────────
-        // Bind native touch events to the marker's actual DOM element.
-        // We do this after the marker is on the map (element exists),
-        // or wait for the 'add' event if called before render.
         function bindNativeTouch() {
             var el = layer.getElement();
             if (!el) return;
-
-            // Tear down any previous listeners to avoid stacking
             if (el._mTouchStart) el.removeEventListener('touchstart', el._mTouchStart);
             if (el._mTouchEnd)   el.removeEventListener('touchend',   el._mTouchEnd);
-
             var tapStartX, tapStartY;
-
             el._mTouchStart = function(e) {
-                // Record start position to distinguish tap from drag
                 if (e.touches.length === 1) {
                     tapStartX = e.touches[0].clientX;
                     tapStartY = e.touches[0].clientY;
                 }
             };
-
             el._mTouchEnd = function(e) {
                 if (e.changedTouches.length !== 1) return;
                 var dx = Math.abs(e.changedTouches[0].clientX - tapStartX);
                 var dy = Math.abs(e.changedTouches[0].clientY - tapStartY);
-                // Ignore if the finger moved more than 10px — that's a drag/scroll
                 if (dx > 10 || dy > 10) return;
-
-                // Prevent the 300ms ghost click iOS fires after touchend,
-                // and stop bubbling so the map-background handler doesn't fire
                 e.preventDefault();
                 e.stopPropagation();
-
                 if (layer.isPopupOpen()) {
                     layer.closePopup();
                 } else {
                     layer.openPopup();
                 }
             };
-
             el.addEventListener('touchstart', el._mTouchStart, { passive: true });
             el.addEventListener('touchend',   el._mTouchEnd,   { passive: false });
         }
-
-        // getElement() returns null until the marker is actually rendered
-        if (layer.getElement()) {
-            bindNativeTouch();
-        } else {
-            layer.once('add', bindNativeTouch);
-        }
+        if (layer.getElement()) { bindNativeTouch(); }
+        else { layer.once('add', bindNativeTouch); }
     }
 }
 
 // ─────────────────────────────────────────────────────────
 //  MOBILE BACKGROUND TAP → close open popup
-//
-//  Since closePopupOnClick:false, we handle this ourselves.
-//  We listen on the map container with a native touchend.
-//  Taps on markers call stopPropagation so they never reach
-//  here; only genuine background taps do.
 // ─────────────────────────────────────────────────────────
 if (isTouchDevice) {
     map.getContainer().addEventListener('touchend', function() {
         if (lastOpenedLayer && lastOpenedLayer.isPopupOpen()) {
-            // Only close if the map wasn't being dragged
             if (!map.dragging.moved()) {
                 lastOpenedLayer.closePopup();
             }
@@ -512,15 +510,15 @@ map.on(L.Draw.Event.CREATED, function(e) {
     if (e.layerType === 'marker') {
         layer.setIcon(makeIcon(selectedColor));
         layer._customColor = selectedColor;
-        layer.bindPopup(buildPopupHtml('', ''), popupOpts());
+        layer.bindPopup(buildPopupHtml('', '', false), popupOpts());
     }
     drawnItems.addLayer(layer);
-    attachEvents(layer);
+    attachEvents(layer, false);
     if (e.layerType === 'marker') showModal(layer);
 });
 
 // ─────────────────────────────────────────────────────────
-//  LAYER SWITCHER
+//  BASE LAYER SWITCHER
 // ─────────────────────────────────────────────────────────
 var currentLayerName = 'regional';
 var layerBtnRef = null;
@@ -530,10 +528,11 @@ function switchLayer(name) {
     if (name === currentLayerName) return;
     imageOverlay.setUrl(LAYER_URLS[name]);
     currentLayerName = name;
-    document.querySelectorAll('.layer-action-btn').forEach(function(b) {
+    document.querySelectorAll('#layerActionsPanel .flyout-action-btn').forEach(function(b) {
         b.classList.toggle('active-layer', b.dataset.layer === name);
     });
-    showToast('Switched to ' + name.charAt(0).toUpperCase() + name.slice(1) + ' view');
+    var label = name.charAt(0).toUpperCase() + name.slice(1);
+    showToast('Switched to ' + label + ' view');
 }
 function openLayerPanel() {
     if (!layerBtnRef) return;
@@ -547,14 +546,178 @@ function openLayerPanel() {
 }
 function closeLayerPanel() {
     document.getElementById('layerActionsPanel').classList.remove('open');
-    if (layerBtnRef) layerBtnRef.classList.remove('layer-active');
+    if (layerBtnRef && layerBtnRef._role === 'layer') layerBtnRef.classList.remove('layer-active');
 }
+
+// ─────────────────────────────────────────────────────────
+//  SAVE / LOAD FLYOUT
+// ─────────────────────────────────────────────────────────
+var saveBtnRef = null;
+
+function openSaveLoadPanel(btn) {
+    saveBtnRef = btn;
+    var rect  = btn.getBoundingClientRect();
+    var panel = document.getElementById('saveLoadPanel');
+    panel.style.top        = rect.top    + 'px';
+    panel.style.left       = rect.right  + 'px';
+    panel.style.height     = rect.height + 'px';
+    panel.style.lineHeight = rect.height + 'px';
+    panel.classList.add('open');
+    btn.classList.add('layer-active');
+}
+function closeSaveLoadPanel() {
+    document.getElementById('saveLoadPanel').classList.remove('open');
+    if (saveBtnRef) saveBtnRef.classList.remove('layer-active');
+}
+
+// ─────────────────────────────────────────────────────────
+//  PIN LAYER OVERLAYS
+// ─────────────────────────────────────────────────────────
+
+// State for each overlay layer: { group, loaded, visible, count }
+var pinLayerState = {};
+PIN_LAYER_DEFS.forEach(function(def) {
+    pinLayerState[def.id] = {
+        group:   new L.FeatureGroup(),
+        loaded:  false,
+        visible: false,
+        count:   0
+    };
+    map.addLayer(pinLayerState[def.id].group);
+});
+
+var pinLayerBtnRef = null;
+
+function buildPinLayerPanel() {
+    var panel = document.getElementById('pinLayerPanel');
+    // Clear existing rows (keep header)
+    var header = panel.querySelector('.panel-header');
+    panel.innerHTML = '';
+    panel.appendChild(header);
+
+    PIN_LAYER_DEFS.forEach(function(def) {
+        var state = pinLayerState[def.id];
+        var row = document.createElement('div');
+        row.className = 'pin-layer-row';
+        row.id = 'pin-row-' + def.id;
+
+        var toggle = document.createElement('div');
+        toggle.className = 'pin-layer-toggle' + (state.visible ? ' on' : '');
+        toggle.id = 'pin-toggle-' + def.id;
+
+        var label = document.createElement('span');
+        label.className = 'pin-layer-label';
+        label.textContent = def.label;
+
+        var count = document.createElement('span');
+        count.className = 'pin-layer-count';
+        count.id = 'pin-count-' + def.id;
+        count.textContent = state.loaded ? state.count + ' pins' : '';
+
+        row.appendChild(toggle);
+        row.appendChild(label);
+        row.appendChild(count);
+
+        row.onclick = function() { togglePinLayer(def); };
+        panel.appendChild(row);
+    });
+}
+
+function openPinLayerPanel(btn) {
+    pinLayerBtnRef = btn;
+    buildPinLayerPanel();
+    var rect  = btn.getBoundingClientRect();
+    var panel = document.getElementById('pinLayerPanel');
+    panel.style.top  = rect.top  + 'px';
+    panel.style.left = rect.right + 'px';
+    panel.classList.add('open');
+    btn.classList.add('layer-active');
+}
+function closePinLayerPanel() {
+    document.getElementById('pinLayerPanel').classList.remove('open');
+    if (pinLayerBtnRef) pinLayerBtnRef.classList.remove('layer-active');
+}
+
+function togglePinLayer(def) {
+    var state = pinLayerState[def.id];
+
+    if (!state.loaded) {
+        // Show loading state
+        var countEl = document.getElementById('pin-count-' + def.id);
+        if (countEl) { countEl.textContent = '…'; }
+
+        fetch(def.file)
+            .then(function(r) {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(function(data) {
+                data.forEach(function(item) {
+                    if (item.type === 'marker') {
+                        var color = item.color || PIN_COLORS[5].hex; // blue default for overlays
+                        var layer = L.marker([item.lat, item.lng], { icon: makeIcon(color) });
+                        layer._customName  = item.name  || '';
+                        layer._customDesc  = item.desc  || '';
+                        layer._customColor = color;
+                        layer.bindPopup(buildPopupHtml(item.name, item.desc, true), popupOpts());
+                        state.group.addLayer(layer);
+                        attachEvents(layer, true);
+                    }
+                });
+                state.loaded  = true;
+                state.count   = state.group.getLayers().length;
+                state.visible = true;
+                updatePinLayerUI(def.id);
+                showToast(def.label + ' loaded — ' + state.count + ' pins');
+            })
+            .catch(function(err) {
+                console.error('Failed to load ' + def.file, err);
+                var countEl = document.getElementById('pin-count-' + def.id);
+                if (countEl) { countEl.textContent = 'not found'; }
+                showToast('Could not load ' + def.label + '.json');
+            });
+    } else {
+        // Toggle visibility
+        state.visible = !state.visible;
+        if (state.visible) {
+            map.addLayer(state.group);
+        } else {
+            map.removeLayer(state.group);
+        }
+        updatePinLayerUI(def.id);
+        showToast(def.label + ' ' + (state.visible ? 'shown' : 'hidden'));
+    }
+}
+
+function updatePinLayerUI(id) {
+    var state = pinLayerState[id];
+    var toggle = document.getElementById('pin-toggle-' + id);
+    var count  = document.getElementById('pin-count-' + id);
+    if (toggle) { toggle.className = 'pin-layer-toggle' + (state.visible ? ' on' : ''); }
+    if (count)  { count.textContent = state.loaded ? state.count + ' pins' : ''; }
+}
+
+// Close flyout panels when clicking elsewhere
 document.addEventListener('click', function(e) {
-    var panel = document.getElementById('layerActionsPanel');
-    if (!panel.classList.contains('open')) return;
-    if (panel.contains(e.target)) return;
-    if (layerBtnRef && layerBtnRef.contains(e.target)) return;
-    closeLayerPanel();
+    var layerPanel   = document.getElementById('layerActionsPanel');
+    var savePanel    = document.getElementById('saveLoadPanel');
+    var pinPanel     = document.getElementById('pinLayerPanel');
+
+    if (layerPanel.classList.contains('open')) {
+        if (!layerPanel.contains(e.target) && !(layerBtnRef && layerBtnRef.contains(e.target))) {
+            closeLayerPanel();
+        }
+    }
+    if (savePanel.classList.contains('open')) {
+        if (!savePanel.contains(e.target) && !(saveBtnRef && saveBtnRef.contains(e.target))) {
+            closeSaveLoadPanel();
+        }
+    }
+    if (pinPanel.classList.contains('open')) {
+        if (!pinPanel.contains(e.target) && !(pinLayerBtnRef && pinLayerBtnRef.contains(e.target))) {
+            closePinLayerPanel();
+        }
+    }
 });
 
 // ─────────────────────────────────────────────────────────
@@ -566,20 +729,49 @@ var MapToolbarControl = L.Control.extend({
         var c = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
         L.DomEvent.disableClickPropagation(c);
         L.DomEvent.disableScrollPropagation(c);
+
         function btn(icon, tip, fn) {
             var a = L.DomUtil.create('a', 'custom-map-btn', c);
             a.innerHTML = icon; a.href = '#'; a.title = tip;
             L.DomEvent.on(a, 'click', function(e) { L.DomEvent.preventDefault(e); fn(a); });
             return a;
         }
-        btn('💾', 'Save Map',    function()  { saveMap(); });
-        btn('📂', 'Load Map',    function()  { document.getElementById('fileInput').click(); });
-        btn('🌍', 'Text Layers', function(a) {
+
+        // 💾 Save — now opens a flyout with Save / Load
+        btn('💾', 'Save / Load', function(a) {
+            var panel = document.getElementById('saveLoadPanel');
+            if (panel.classList.contains('open')) { closeSaveLoadPanel(); }
+            else {
+                closeLayerPanel();
+                closePinLayerPanel();
+                openSaveLoadPanel(a);
+            }
+        });
+
+        // 📂 Pin Layers — opens predefined overlay selector
+        btn('📂', 'Pin Layers', function(a) {
+            var panel = document.getElementById('pinLayerPanel');
+            if (panel.classList.contains('open')) { closePinLayerPanel(); }
+            else {
+                closeLayerPanel();
+                closeSaveLoadPanel();
+                openPinLayerPanel(a);
+            }
+        });
+
+        // 🌍 Base map switcher
+        btn('🌍', 'Map Style', function(a) {
+            a._role = 'layer';
             layerBtnRef = a;
             var panel = document.getElementById('layerActionsPanel');
             if (panel.classList.contains('open')) { closeLayerPanel(); }
-            else { a.classList.add('layer-active'); openLayerPanel(); }
+            else {
+                closeSaveLoadPanel();
+                closePinLayerPanel();
+                openLayerPanel();
+            }
         });
+
         return c;
     }
 });
@@ -597,7 +789,7 @@ function showToast(msg) {
 }
 
 // ─────────────────────────────────────────────────────────
-//  SAVE / LOAD
+//  SAVE / LOAD (user pins)
 // ─────────────────────────────────────────────────────────
 function saveMap() {
     var data = [];
@@ -637,9 +829,9 @@ function restoreItem(item) {
         layer._customName  = item.name  || '';
         layer._customDesc  = item.desc  || '';
         layer._customColor = color;
-        layer.bindPopup(buildPopupHtml(item.name, item.desc), popupOpts());
+        layer.bindPopup(buildPopupHtml(item.name, item.desc, false), popupOpts());
         drawnItems.addLayer(layer);
-        attachEvents(layer);
+        attachEvents(layer, false);
     } else if (item.type === 'shape' && item.geojson) {
         var s = L.geoJSON(item.geojson).getLayers()[0];
         if (s) drawnItems.addLayer(s);
